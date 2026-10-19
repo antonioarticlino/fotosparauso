@@ -6,69 +6,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080a10">
 <title>LOTHWAR | Acervo de Peças</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <style>
-:root {
- --bg:#05070a;
- --header:#0a0e14;
- --card:#12161f;
- --cardTop:#232a38;
- --border:#2e3646;
- --text:#eef1f6;
- --muted:#8a93a6;
- --purple:#8b5cf6;
- --green:#35d488;
- --blue:#3fc8ff;
- --orange:#f0b94d;
- --red:#ff6a3d;
+:root{
+--bg:#05070a;--header:#0a0e14;--card:#12161f;
+--cardTop:#232a38;--border:#2e3646;--text:#eef1f6;
+--muted:#8a93a6;--purple:#8b5cf6;--green:#35d488;
+--blue:#3fc8ff;--orange:#f0b94d;--red:#ff6a3d
 }
 *{box-sizing:border-box}
 body{
- margin:0;background:var(--bg);color:var(--text);
- font-family:Rajdhani,Arial,sans-serif;font-size:16px;
+margin:0;background:var(--bg);color:var(--text);
+font-family:Rajdhani,Arial,sans-serif;font-size:16px
 }
 button,input,select,textarea{font:inherit}
 button{cursor:pointer;transition:.2s}
-button:hover{filter:brightness(1.15)}
+button:hover{filter:brightness(1.12)}
 button:disabled{opacity:.5;cursor:wait}
 .hidden{display:none!important}
 header{
- background:var(--header);
- border-bottom:1px solid var(--border);
- padding:15px 4%;
- display:flex;justify-content:space-between;
- align-items:center;gap:15px;flex-wrap:wrap;
- position:sticky;top:0;z-index:20;
+background:var(--header);border-bottom:1px solid var(--border);
+padding:15px 4%;display:flex;justify-content:space-between;
+align-items:center;gap:15px;flex-wrap:wrap;
+position:sticky;top:0;z-index:20
 }
 .brand{display:flex;align-items:center;gap:12px}
 .brand-icon{
- width:46px;height:46px;border-radius:12px;
- background:linear-gradient(135deg,#8b5cf6,#3fc8ff);
- display:grid;place-items:center;font-size:23px;
+width:46px;height:46px;border-radius:12px;
+background:linear-gradient(135deg,#8b5cf6,#3fc8ff);
+display:grid;place-items:center;font-size:23px
 }
 .brand h1{
- font-family:Orbitron,sans-serif;
- font-size:21px;letter-spacing:2px;margin:0;
+font-family:Orbitron,sans-serif;font-size:21px;
+letter-spacing:2px;margin:0
 }
 .brand small{color:var(--muted);letter-spacing:2px}
 .header-actions{
- display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+display:flex;align-items:center;gap:9px;flex-wrap:wrap
 }
 .search,select{
- background:#12161f;color:white;
- border:1px solid var(--border);
- border-radius:8px;padding:11px;outline:none;
+background:#12161f;color:white;border:1px solid var(--border);
+border-radius:8px;padding:11px;outline:none
 }
 .search{min-width:205px}
 .search:focus,select:focus{border-color:var(--purple)}
 .btn{
- border:0;border-radius:8px;
- padding:11px 16px;color:white;font-weight:700;
- display:inline-flex;align-items:center;justify-content:center;
- gap:7px;
+border:0;border-radius:8px;padding:11px 16px;
+color:white;font-weight:700;display:inline-flex;
+align-items:center;justify-content:center;gap:7px
 }
 .purple{background:var(--purple)}
 .green{background:var(--green);color:#07100b}
@@ -77,1056 +63,894 @@ header{
 .blue{background:#1b6fe0}
 .container{max-width:1450px;margin:auto;padding:28px 4%}
 .hero{
- background:linear-gradient(120deg,#1a1134,#0b1422);
- border:1px solid #342455;border-radius:16px;
- padding:25px;margin-bottom:28px;
+background:linear-gradient(120deg,#1a1134,#0b1422);
+border:1px solid #342455;border-radius:16px;
+padding:25px;margin-bottom:28px
 }
 .hero h2{
- font:800 clamp(18px,3vw,27px) Orbitron,sans-serif;
- margin:0 0 10px;
+font:800 clamp(18px,3vw,27px) Orbitron,sans-serif;
+margin:0 0 10px
 }
 .hero p{color:var(--muted);margin:0}
 .stats{
- display:grid;grid-template-columns:repeat(3,1fr);
- gap:12px;margin-top:24px;
+display:grid;grid-template-columns:repeat(3,1fr);
+gap:12px;margin-top:24px
 }
 .stat{
- background:#101625;border:1px solid var(--border);
- padding:16px;border-radius:10px;
+background:#101625;border:1px solid var(--border);
+padding:16px;border-radius:10px
 }
 .stat small{display:block;color:var(--muted)}
 .stat strong{font:800 25px Orbitron,sans-serif}
 .section{margin-bottom:45px}
 .section-head{
- display:flex;align-items:center;justify-content:space-between;
- border-bottom:1px solid var(--border);
- padding-bottom:14px;margin-bottom:20px;gap:10px;
+display:flex;align-items:center;justify-content:space-between;
+border-bottom:1px solid var(--border);
+padding-bottom:14px;margin-bottom:20px;gap:10px
 }
 .section-head h2{
- margin:0;font:700 18px Orbitron,sans-serif;
+margin:0;font:700 18px Orbitron,sans-serif
 }
 .section-head span{color:#c4b5fd;font-weight:700}
 .products{
- display:grid;
- grid-template-columns:repeat(auto-fill,minmax(255px,1fr));
- gap:18px;
+display:grid;grid-template-columns:
+repeat(auto-fill,minmax(255px,1fr));gap:18px
 }
 .card{
- background:linear-gradient(165deg,var(--cardTop),var(--card) 65%);
- border:1px solid var(--border);
- border-radius:13px;overflow:hidden;
- display:flex;flex-direction:column;
+background:linear-gradient(165deg,var(--cardTop),var(--card) 65%);
+border:1px solid var(--border);border-radius:13px;
+overflow:hidden;display:flex;flex-direction:column
 }
 .card:hover{border-color:#66518c}
 .photos{
- height:245px;background:#080b10;
- display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+height:245px;background:#080b10;
+display:flex;overflow-x:auto;scroll-snap-type:x mandatory
 }
 .photos img{
- width:100%;height:100%;
- flex:0 0 100%;object-fit:contain;
- scroll-snap-align:start;cursor:pointer;
+width:100%;height:100%;flex:0 0 100%;
+object-fit:contain;scroll-snap-align:start;cursor:pointer
 }
 .no-photo{
- height:245px;width:100%;display:grid;
- place-items:center;color:#434a5c;font-size:47px;
+height:245px;width:100%;display:grid;
+place-items:center;color:#434a5c;font-size:47px
 }
 .card-body{
- display:flex;flex-direction:column;gap:10px;
- padding:16px;flex:1;
+display:flex;flex-direction:column;gap:10px;
+padding:16px;flex:1
 }
 .card h3{margin:0;font-size:19px;overflow-wrap:anywhere}
 .category{color:var(--muted);font-size:13px}
 .price{
- color:var(--orange);
- font:800 19px Orbitron,sans-serif;
+color:var(--orange);font:800 19px Orbitron,sans-serif
 }
 .description{
- color:#cbd2de;font-size:14px;
- white-space:pre-wrap;overflow-wrap:anywhere;
+color:#cbd2de;font-size:14px;
+white-space:pre-wrap;overflow-wrap:anywhere
 }
 .status{
- display:inline-block;width:fit-content;
- padding:5px 10px;border-radius:20px;
- background:#15352a;color:var(--green);
- font-size:12px;font-weight:700;
+display:inline-block;width:fit-content;
+padding:5px 10px;border-radius:20px;
+background:#15352a;color:var(--green);
+font-size:12px;font-weight:700
 }
-.status.reservado{background:#3a3017;color:var(--orange)}
-.status.vendido{background:#3d201b;color:var(--red)}
-.card-actions{margin-top:auto;display:flex;gap:7px;padding-top:12px}
+.status.reservado{
+background:#3a3017;color:var(--orange)
+}
+.status.vendido{
+background:#3d201b;color:var(--red)
+}
+.card-actions{
+margin-top:auto;display:flex;gap:7px;padding-top:12px
+}
 .card-actions button{flex:1;font-size:13px}
 .empty{
- grid-column:1/-1;text-align:center;
- padding:40px 15px;color:var(--muted);
- border:1px dashed var(--border);border-radius:12px;
+grid-column:1/-1;text-align:center;padding:40px 15px;
+color:var(--muted);border:1px dashed var(--border);
+border-radius:12px
 }
 .overlay{
- position:fixed;inset:0;z-index:100;
- background:rgba(0,0,0,.88);
- display:flex;justify-content:center;align-items:center;
- padding:15px;overflow:auto;
+position:fixed;inset:0;z-index:100;
+background:rgba(0,0,0,.88);
+display:flex;justify-content:center;align-items:center;
+padding:15px;overflow:auto
 }
 .modal{
- background:#101219;border:1px solid #34304c;
- border-radius:18px;width:100%;max-width:570px;
- max-height:95vh;overflow-y:auto;padding:25px;
+background:#101219;border:1px solid #34304c;
+border-radius:18px;width:100%;max-width:570px;
+max-height:95vh;overflow-y:auto;padding:25px
 }
 .modal h2{
- font:700 19px Orbitron,sans-serif;
- color:#c4b5fd;margin:0 0 20px;
+font:700 19px Orbitron,sans-serif;
+color:#c4b5fd;margin:0 0 20px
 }
 .form-group{margin-bottom:14px}
 .form-group label{
- display:block;font-weight:700;color:var(--muted);
- margin-bottom:6px;
+display:block;font-weight:700;
+color:var(--muted);margin-bottom:6px
 }
-.form-group input,.form-group select,.form-group textarea{
- width:100%;background:#0a0c10;
- border:1px solid var(--border);
- color:white;border-radius:8px;
- padding:12px;outline:none;
+.form-group input,.form-group select,
+.form-group textarea{
+width:100%;background:#0a0c10;
+border:1px solid var(--border);
+color:white;border-radius:8px;
+padding:12px;outline:none
 }
-.form-group input:focus,.form-group select:focus,
-.form-group textarea:focus{border-color:var(--purple)}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+border-color:var(--purple)
+}
 .form-group textarea{min-height:100px;resize:vertical}
 .form-actions{display:flex;gap:10px;margin-top:20px}
 .form-actions .btn{flex:1}
 .photo-preview{
- display:grid;grid-template-columns:repeat(4,1fr);
- gap:8px;margin-top:12px;
+display:grid;grid-template-columns:repeat(4,1fr);
+gap:8px;margin-top:12px
 }
 .photo-item{position:relative;overflow:hidden}
 .photo-item img{
- width:100%;height:85px;object-fit:cover;
- border-radius:7px;
+width:100%;height:85px;object-fit:cover;
+border-radius:7px
 }
 .photo-item button{
- position:absolute;top:3px;right:3px;
- border:0;border-radius:5px;
- background:var(--red);color:white;padding:2px 7px;
+position:absolute;top:3px;right:3px;
+border:0;border-radius:5px;
+background:var(--red);color:white;padding:2px 7px
 }
-.photo-item small{display:block;color:var(--muted)}
-#loginOverlay{z-index:300}
-#loginOverlay .modal{max-width:420px}
 #message{
- position:fixed;bottom:20px;left:50%;
- transform:translateX(-50%);
- background:#252b39;border:1px solid var(--purple);
- border-radius:10px;padding:14px 20px;
- z-index:500;max-width:90vw;text-align:center;
- box-shadow:0 8px 30px #0008;
+position:fixed;bottom:20px;left:50%;
+transform:translateX(-50%);
+background:#252b39;border:1px solid var(--purple);
+border-radius:10px;padding:14px 20px;
+z-index:500;max-width:90vw;text-align:center;
+box-shadow:0 8px 30px #0008
 }
 .gallery-modal{max-width:900px;text-align:center}
 .gallery-modal img{
- width:100%;max-height:65vh;object-fit:contain;
+width:100%;max-height:65vh;object-fit:contain
 }
 .gallery-buttons{
- display:flex;justify-content:center;
- gap:12px;margin-top:15px;
+display:flex;justify-content:center;
+gap:12px;margin-top:15px
 }
-.user-name{font-size:13px;color:#c4b5fd}
-.loader{
- width:25px;height:25px;border:3px solid #444;
- border-top-color:var(--purple);
- border-radius:50%;animation:spin .8s linear infinite;
+.connection{
+font-size:13px;font-weight:700;
+color:var(--orange)
 }
-@keyframes spin{to{transform:rotate(360deg)}}
+.connection.online{color:var(--green)}
 @media(max-width:700px){
- header{padding:14px}
- .container{padding:18px 13px}
- .header-actions{width:100%}
- .search{flex:1;min-width:130px}
- .stats{gap:7px}
- .stat{padding:11px}
- .stat strong{font-size:18px}
- .section-head h2{font-size:14px}
- .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
- .photos,.no-photo{height:160px}
- .card-body{padding:10px;gap:8px}
- .card h3{font-size:15px}
- .price{font-size:15px}
- .card-actions{flex-wrap:wrap}
- .modal{padding:18px}
- .photo-preview{grid-template-columns:repeat(3,1fr)}
+header{padding:14px}
+.container{padding:18px 13px}
+.header-actions{width:100%}
+.search{flex:1;min-width:130px}
+.stats{gap:7px}
+.stat{padding:11px}
+.stat strong{font-size:18px}
+.section-head h2{font-size:14px}
+.products{
+grid-template-columns:repeat(2,minmax(0,1fr));gap:9px
+}
+.photos,.no-photo{height:160px}
+.card-body{padding:10px;gap:8px}
+.card h3{font-size:15px}
+.price{font-size:15px}
+.card-actions{flex-wrap:wrap}
+.modal{padding:18px}
+.photo-preview{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:360px){
- .products{grid-template-columns:1fr}
+.products{grid-template-columns:1fr}
 }
 </style>
 </head>
-
 <body>
 
 <header>
- <div class="brand">
-  <div class="brand-icon">
-   <i class="fa-solid fa-microchip"></i>
-  </div>
-  <div>
-   <h1>LOTHWAR</h1>
-   <small>ACERVO DE PEÇAS</small>
-  </div>
- </div>
+<div class="brand">
+<div class="brand-icon">
+<i class="fa-solid fa-microchip"></i>
+</div>
+<div>
+<h1>LOTHWAR</h1>
+<small>ACERVO DE PEÇAS</small>
+</div>
+</div>
 
- <div class="header-actions">
-  <span class="user-name" id="userName"></span>
+<div class="header-actions">
+<span class="connection" id="connection">
+<i class="fa-solid fa-circle"></i>
+Conectando...
+</span>
 
-  <input class="search" id="search"
-   placeholder="Pesquisar peças...">
+<input class="search" id="search"
+placeholder="Pesquisar peças...">
 
-  <select id="statusFilter">
-   <option value="">Todos os status</option>
-   <option>Disponível</option>
-   <option>Reservado</option>
-   <option>Vendido</option>
-  </select>
+<select id="statusFilter">
+<option value="">Todos os status</option>
+<option>Disponível</option>
+<option>Reservado</option>
+<option>Vendido</option>
+</select>
 
-  <button class="btn purple" id="addButton">
-   <i class="fa-solid fa-plus"></i> Adicionar Peça
-  </button>
-
-  <button class="btn gray" id="logoutButton">
-   <i class="fa-solid fa-right-from-bracket"></i> Sair
-  </button>
- </div>
+<button class="btn purple" id="addButton">
+<i class="fa-solid fa-plus"></i>
+Adicionar Peça
+</button>
+</div>
 </header>
 
 <main class="container">
 
- <div class="hero">
-  <h2>GERENCIAMENTO DE PEÇAS</h2>
-  <p>
-   Organize as fotos dos produtos do Antônio e do Joab.
-   Acompanhe as peças disponíveis, reservadas e vendidas.
-  </p>
+<div class="hero">
+<h2>GERENCIAMENTO DE PEÇAS</h2>
+<p>
+Organize fotografias e descrições das peças do Antônio
+e do Joab. Acompanhe os produtos disponíveis,
+reservados e vendidos.
+</p>
 
-  <div class="stats">
-   <div class="stat">
-    <small>Total</small>
-    <strong id="totalProducts">0</strong>
-   </div>
-   <div class="stat">
-    <small>Antônio</small>
-    <strong id="totalAntonio">0</strong>
-   </div>
-   <div class="stat">
-    <small>Joab</small>
-    <strong id="totalJoab">0</strong>
-   </div>
-  </div>
- </div>
+<div class="stats">
+<div class="stat">
+<small>Total</small>
+<strong id="totalProducts">0</strong>
+</div>
+<div class="stat">
+<small>Antônio</small>
+<strong id="totalAntonio">0</strong>
+</div>
+<div class="stat">
+<small>Joab</small>
+<strong id="totalJoab">0</strong>
+</div>
+</div>
+</div>
 
- <section class="section">
-  <div class="section-head">
-   <h2><i class="fa-solid fa-images"></i> FOTOS DO ANTÔNIO</h2>
-   <span id="countAntonio">0 peças</span>
-  </div>
-  <div class="products" id="productsAntonio"></div>
- </section>
+<section class="section">
+<div class="section-head">
+<h2>
+<i class="fa-solid fa-images"></i>
+FOTOS DO ANTÔNIO
+</h2>
+<span id="countAntonio">0 peças</span>
+</div>
+<div class="products" id="productsAntonio"></div>
+</section>
 
- <section class="section">
-  <div class="section-head">
-   <h2><i class="fa-solid fa-images"></i> FOTOS DO JOAB</h2>
-   <span id="countJoab">0 peças</span>
-  </div>
-  <div class="products" id="productsJoab"></div>
- </section>
+<section class="section">
+<div class="section-head">
+<h2>
+<i class="fa-solid fa-images"></i>
+FOTOS DO JOAB
+</h2>
+<span id="countJoab">0 peças</span>
+</div>
+<div class="products" id="productsJoab"></div>
+</section>
 
 </main>
 
-<!-- LOGIN -->
-<div class="overlay" id="loginOverlay">
- <div class="modal">
-  <h2><i class="fa-solid fa-lock"></i> LOTHWAR LOGIN</h2>
-  <p style="color:var(--muted)">
-   Acesse o acervo com sua conta autorizada.
-  </p>
-
-  <form id="loginForm">
-   <div class="form-group">
-    <label>E-mail</label>
-    <input type="email" id="loginEmail"
-     autocomplete="username" required>
-   </div>
-
-   <div class="form-group">
-    <label>Senha</label>
-    <input type="password" id="loginPassword"
-     autocomplete="current-password" required>
-   </div>
-
-   <button class="btn purple" id="loginButton"
-    style="width:100%" type="submit">
-    Entrar
-   </button>
-  </form>
- </div>
-</div>
-
-<!-- CADASTRO DE PEÇAS -->
+<!-- FORMULÁRIO DE CADASTRO -->
 <div class="overlay hidden" id="formOverlay">
- <div class="modal">
-  <h2 id="formTitle">Adicionar Peça</h2>
+<div class="modal">
 
-  <form id="productForm">
+<h2 id="formTitle">Adicionar Peça</h2>
 
-   <div class="form-group">
-    <label>Grupo das Fotos</label>
-    <select id="productOwner" required>
-     <option value="Antonio">Fotos do Antônio</option>
-     <option value="Joab">Fotos do Joab</option>
-    </select>
-   </div>
+<form id="productForm">
 
-   <div class="form-group">
-    <label>Nome da Peça</label>
-    <input id="productName" type="text"
-     maxlength="150" required
-     placeholder="Ex: RTX 5050 8GB">
-   </div>
-
-   <div class="form-group">
-    <label>Categoria</label>
-    <select id="productCategory">
-     <option>Placa de Vídeo</option>
-     <option>Processador</option>
-     <option>Placa-Mãe</option>
-     <option>Memória RAM</option>
-     <option>SSD / HD</option>
-     <option>Fonte</option>
-     <option>Gabinete</option>
-     <option>Cooler / Fan</option>
-     <option>Periféricos</option>
-     <option>Computador Completo</option>
-     <option>Outros</option>
-    </select>
-   </div>
-
-   <div class="form-group">
-    <label>Preço (R$)</label>
-    <input id="productPrice" type="number"
-     min="0" step="0.01" required placeholder="0.00">
-   </div>
-
-   <div class="form-group">
-    <label>Condição</label>
-    <select id="productCondition">
-     <option>Nova</option>
-     <option>Usada - Como nova</option>
-     <option>Usada - Em boas condições</option>
-    </select>
-   </div>
-
-   <div class="form-group">
-    <label>Status</label>
-    <select id="productStatus">
-     <option>Disponível</option>
-     <option>Reservado</option>
-     <option>Vendido</option>
-    </select>
-   </div>
-
-   <div class="form-group">
-    <label>Descrição</label>
-    <textarea id="productDescription"
-     maxlength="5000"
-     placeholder="Descreva a peça, especificações, funcionamento e acessórios."></textarea>
-   </div>
-
-   <div class="form-group">
-    <label>Fotos da Peça</label>
-    <input type="file" id="productPhotos"
-     multiple accept="image/*">
-
-    <small style="color:var(--muted)">
-     Selecione várias fotos. Máximo de 15 fotos por peça,
-     até 10 MB cada.
-    </small>
-
-    <div class="photo-preview" id="photoPreview"></div>
-   </div>
-
-   <div class="form-actions">
-    <button type="button" class="btn gray"
-     id="cancelButton">Cancelar</button>
-
-    <button type="submit" class="btn purple"
-     id="saveButton">Salvar Peça</button>
-   </div>
-
-  </form>
- </div>
+<div class="form-group">
+<label>Grupo das Fotos</label>
+<select id="productOwner" required>
+<option value="Antonio">Fotos do Antônio</option>
+<option value="Joab">Fotos do Joab</option>
+</select>
 </div>
 
-<!-- VISUALIZADOR DE IMAGENS -->
+<div class="form-group">
+<label>Nome da Peça</label>
+<input id="productName" type="text"
+maxlength="150" required
+placeholder="Ex: RTX 5050 8GB">
+</div>
+
+<div class="form-group">
+<label>Categoria</label>
+<select id="productCategory">
+<option>Placa de Vídeo</option>
+<option>Processador</option>
+<option>Placa-Mãe</option>
+<option>Memória RAM</option>
+<option>SSD / HD</option>
+<option>Fonte</option>
+<option>Gabinete</option>
+<option>Cooler / Fan</option>
+<option>Periféricos</option>
+<option>Computador Completo</option>
+<option>Outros</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Preço (R$)</label>
+<input id="productPrice" type="number"
+min="0" step="0.01" required
+placeholder="0.00">
+</div>
+
+<div class="form-group">
+<label>Condição</label>
+<select id="productCondition">
+<option>Nova</option>
+<option>Usada - Como nova</option>
+<option>Usada - Em boas condições</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Status</label>
+<select id="productStatus">
+<option>Disponível</option>
+<option>Reservado</option>
+<option>Vendido</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Descrição</label>
+<textarea id="productDescription"
+maxlength="5000"
+placeholder="Especificações, funcionamento, acessórios..."></textarea>
+</div>
+
+<div class="form-group">
+<label>Fotografias da Peça</label>
+<input type="file" id="productPhotos"
+multiple accept="image/*">
+<small style="color:var(--muted)">
+Até 15 fotografias por peça, com no máximo 10 MB cada.
+</small>
+<div class="photo-preview" id="photoPreview"></div>
+</div>
+
+<div class="form-actions">
+<button class="btn gray" type="button"
+id="cancelButton">Cancelar</button>
+<button class="btn purple" type="submit"
+id="saveButton">Salvar Peça</button>
+</div>
+
+</form>
+</div>
+</div>
+
+<!-- GALERIA -->
 <div class="overlay hidden" id="galleryOverlay">
- <div class="modal gallery-modal">
-  <h2 id="galleryTitle">Fotografias</h2>
-
-  <img id="galleryImage" alt="Fotografia da peça">
-  <p id="galleryCounter"></p>
-
-  <div class="gallery-buttons">
-   <button class="btn gray" id="prevPhoto">
-    <i class="fa-solid fa-chevron-left"></i>
-   </button>
-   <button class="btn purple" id="closeGallery">
-    Fechar
-   </button>
-   <button class="btn gray" id="nextPhoto">
-    <i class="fa-solid fa-chevron-right"></i>
-   </button>
-  </div>
- </div>
+<div class="modal gallery-modal">
+<h2 id="galleryTitle">Fotografias</h2>
+<img id="galleryImage" alt="Fotografia">
+<p id="galleryCounter"></p>
+<div class="gallery-buttons">
+<button class="btn gray" id="prevPhoto">
+<i class="fa-solid fa-chevron-left"></i>
+</button>
+<button class="btn purple" id="closeGallery">
+Fechar
+</button>
+<button class="btn gray" id="nextPhoto">
+<i class="fa-solid fa-chevron-right"></i>
+</button>
+</div>
+</div>
 </div>
 
 <div id="message" class="hidden"></div>
 
-<!-- FIREBASE E SISTEMA -->
 <script type="module">
-
-import { initializeApp } from
+import {initializeApp} from
 "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
 
 import {
- getFirestore,
- collection,
- addDoc,
- onSnapshot,
- doc,
- updateDoc,
- deleteDoc
-} from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+getFirestore,collection,addDoc,onSnapshot,
+doc,updateDoc,deleteDoc
+} from
+"https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
 import {
- getAuth,
- onAuthStateChanged,
- signInWithEmailAndPassword,
- signOut
-} from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+getAuth,onAuthStateChanged,signInAnonymously
+} from
+"https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
-/* ===========================================
-   FIREBASE NOVO - LOJAVENDAS
-=========================================== */
-
-const firebaseConfig = {
- apiKey: "AIzaSyDtmu5yKt5Kz8yxzTCCf5MfC2av1O5zL2Q",
- authDomain: "lojavendas-ae418.firebaseapp.com",
- databaseURL: "https://lojavendas-ae418-default-rtdb.firebaseio.com",
- projectId: "lojavendas-ae418",
- storageBucket: "lojavendas-ae418.firebasestorage.app",
- messagingSenderId: "241091939383",
- appId: "1:241091939383:web:b676e35c3c8c7c45c183b2",
- measurementId: "G-HQMNQFKDZP"
+/* FIREBASE NOVO */
+const firebaseConfig={
+apiKey:"AIzaSyDtmu5yKt5Kz8yxzTCCf5MfC2av1O5zL2Q",
+authDomain:"lojavendas-ae418.firebaseapp.com",
+databaseURL:"https://lojavendas-ae418-default-rtdb.firebaseio.com",
+projectId:"lojavendas-ae418",
+storageBucket:"lojavendas-ae418.firebasestorage.app",
+messagingSenderId:"241091939383",
+appId:"1:241091939383:web:b676e35c3c8c7c45c183b2",
+measurementId:"G-HQMNQFKDZP"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+const auth=getAuth(app);
 
-/* ===========================================
-   BANCO DE DADOS DAS PEÇAS
-=========================================== */
+const COLLECTION_NAME="acervo_fotos_pecas";
+const productsRef=collection(db,COLLECTION_NAME);
 
-const COLLECTION_NAME = "acervo_fotos_pecas";
-const productsRef = collection(db,COLLECTION_NAME);
+/* CLOUDINARY EXISTENTE */
+const CLOUDINARY_CLOUD="o1nv9kjt";
+const CLOUDINARY_PRESET="lothwar_store";
 
-/* ===========================================
-   CLOUDINARY - CONFIGURAÇÃO EXISTENTE
-=========================================== */
-
-const CLOUDINARY_CLOUD = "o1nv9kjt";
-const CLOUDINARY_PRESET = "lothwar_store";
-
-/* ===========================================
-   VARIÁVEIS GERAIS
-=========================================== */
-
-let products = [];
-let currentUser = null;
-let unsubscribe = null;
-let editingId = null;
-let savedPhotos = [];
-let newPhotos = [];
-let galleryPhotos = [];
-let galleryIndex = 0;
-let busy = false;
+let products=[];
+let currentUser=null;
+let editingId=null;
+let savedPhotos=[];
+let newPhotos=[];
+let galleryPhotos=[];
+let galleryIndex=0;
+let busy=false;
+let unsubscribe=null;
 let toastTimer;
 
-const $ = id => document.getElementById(id);
+const $=id=>document.getElementById(id);
 
 function notify(message){
- const el = $("message");
- el.textContent = message;
- el.classList.remove("hidden");
- clearTimeout(toastTimer);
- toastTimer = setTimeout(()=>{
-  el.classList.add("hidden");
- },4500);
+const el=$("message");
+el.textContent=message;
+el.classList.remove("hidden");
+clearTimeout(toastTimer);
+toastTimer=setTimeout(()=>{
+el.classList.add("hidden");
+},4500);
 }
 
 function money(value){
- return Number(value||0).toLocaleString("pt-BR",{
-  style:"currency",
-  currency:"BRL"
- });
+return Number(value||0).toLocaleString("pt-BR",{
+style:"currency",currency:"BRL"
+});
 }
 
 function escapeHTML(value){
- return String(value??"")
-  .replaceAll("&","&amp;")
-  .replaceAll("<","&lt;")
-  .replaceAll(">","&gt;")
-  .replaceAll('"',"&quot;")
-  .replaceAll("'","&#39;");
+return String(value??"")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#39;");
 }
 
 function optimizedURL(url){
- if(typeof url!=="string")return "";
- if(url.includes("res.cloudinary.com") &&
-    url.includes("/upload/") &&
-    !url.includes("/upload/f_auto,q_auto")){
-  return url.replace(
-   "/upload/","/upload/f_auto,q_auto,w_700/"
-  );
- }
- return url;
+if(typeof url!=="string")return "";
+if(url.includes("res.cloudinary.com")
+&&url.includes("/upload/")
+&&!url.includes("/upload/f_auto,q_auto")){
+return url.replace("/upload/",
+"/upload/f_auto,q_auto,w_700/");
+}
+return url;
 }
 
-/* ===========================================
-   LOGIN
-=========================================== */
+function setConnection(text,online=false){
+const el=$("connection");
+el.textContent=text;
+el.classList.toggle("online",online);
+}
 
-$("loginForm").addEventListener("submit",async e=>{
- e.preventDefault();
+/* ENTRADA AUTOMÁTICA */
+onAuthStateChanged(auth,async user=>{
+if(unsubscribe){
+unsubscribe();
+unsubscribe=null;
+}
 
- const button = $("loginButton");
- button.disabled = true;
- button.textContent = "Entrando...";
+if(user){
+currentUser=user;
+setConnection("● Conectado",true);
+listenProducts();
+return;
+}
 
- try{
-  await signInWithEmailAndPassword(
-   auth,
-   $("loginEmail").value.trim(),
-   $("loginPassword").value
-  );
+currentUser=null;
+products=[];
+renderProducts();
+setConnection("● Conectando...");
 
-  $("loginPassword").value = "";
- }catch(error){
-  console.error(error);
-  notify("Falha no login. Confira sua conta e senha.");
- }finally{
-  button.disabled = false;
-  button.textContent = "Entrar";
- }
+try{
+await signInAnonymously(auth);
+}catch(error){
+console.error(error);
+setConnection("● Erro de conexão");
+notify("Ative a autenticação anônima no Firebase.");
+}
 });
 
-$("logoutButton").addEventListener("click",async()=>{
- try{
-  await signOut(auth);
- }catch(error){
-  notify("Não foi possível sair.");
- }
-});
-
-onAuthStateChanged(auth,user=>{
- currentUser = user;
-
- if(unsubscribe){
-  unsubscribe();
-  unsubscribe = null;
- }
-
- if(!user){
-  $("loginOverlay").classList.remove("hidden");
-  $("userName").textContent = "";
-  products = [];
-  renderProducts();
-  closeForm(true);
-  return;
- }
-
- $("loginOverlay").classList.add("hidden");
- $("userName").textContent = user.email || "Conectado";
-
- listenProducts();
-});
-
-/* ===========================================
-   ATUALIZAÇÃO EM TEMPO REAL
-=========================================== */
-
+/* FIRESTORE EM TEMPO REAL */
 function listenProducts(){
- unsubscribe = onSnapshot(
-  productsRef,
-  snapshot=>{
-   products = snapshot.docs.map(item=>({
-    id:item.id,
-    ...item.data()
-   }));
-
-   products.sort((a,b)=>
-    (b.createdAt||0)-(a.createdAt||0)
-   );
-
-   renderProducts();
-  },
-  error=>{
-   console.error(error);
-   notify("Erro ao carregar o Firestore. Verifique as regras.");
-  }
- );
+unsubscribe=onSnapshot(productsRef,snapshot=>{
+products=snapshot.docs.map(item=>({
+id:item.id,...item.data()
+}));
+products.sort((a,b)=>
+(b.createdAt||0)-(a.createdAt||0));
+renderProducts();
+},error=>{
+console.error(error);
+setConnection("● Sem acesso ao banco");
+notify("Confira as regras do Firestore.");
+});
 }
-
-/* ===========================================
-   LISTAGEM DE PEÇAS
-=========================================== */
 
 $("search").addEventListener("input",renderProducts);
 $("statusFilter").addEventListener("change",renderProducts);
 
 function renderProducts(){
- const search = $("search").value.toLowerCase().trim();
- const filter = $("statusFilter").value;
+const search=$("search").value.trim().toLowerCase();
+const filter=$("statusFilter").value;
 
- const antonioAll = products.filter(p=>p.owner==="Antonio");
- const joabAll = products.filter(p=>p.owner==="Joab");
+$("totalProducts").textContent=products.length;
+$("totalAntonio").textContent=
+products.filter(p=>p.owner==="Antonio").length;
+$("totalJoab").textContent=
+products.filter(p=>p.owner==="Joab").length;
 
- $("totalProducts").textContent = products.length;
- $("totalAntonio").textContent = antonioAll.length;
- $("totalJoab").textContent = joabAll.length;
+const filtered=products.filter(p=>{
+const text=[
+p.name||"",p.category||"",p.description||""
+].join(" ").toLowerCase();
 
- const filtered = products.filter(p=>{
-  const text = [
-   p.name||"",
-   p.category||"",
-   p.description||""
-  ].join(" ").toLowerCase();
+return text.includes(search)&&
+(!filter||(p.status||"Disponível")===filter);
+});
 
-  const matchesSearch = text.includes(search);
-  const matchesStatus = !filter ||
-   (p.status||"Disponível")===filter;
+const antonio=filtered.filter(p=>p.owner==="Antonio");
+const joab=filtered.filter(p=>p.owner==="Joab");
 
-  return matchesSearch && matchesStatus;
- });
+$("countAntonio").textContent=antonio.length+" peças";
+$("countJoab").textContent=joab.length+" peças";
 
- const antonio = filtered.filter(p=>p.owner==="Antonio");
- const joab = filtered.filter(p=>p.owner==="Joab");
-
- $("countAntonio").textContent = antonio.length+" peças";
- $("countJoab").textContent = joab.length+" peças";
-
- renderGroup("productsAntonio",antonio);
- renderGroup("productsJoab",joab);
+renderGroup("productsAntonio",antonio);
+renderGroup("productsJoab",joab);
 }
 
 function renderGroup(containerId,list){
- const container = $(containerId);
- container.replaceChildren();
+const container=$(containerId);
+container.replaceChildren();
 
- if(!list.length){
-  const empty = document.createElement("div");
-  empty.className = "empty";
-  empty.textContent = "Nenhuma peça encontrada nesta seção.";
-  container.append(empty);
-  return;
- }
-
- for(const product of list){
-  const photos = Array.isArray(product.photos)
-   ? product.photos : [];
-
-  const status = ["Disponível","Reservado","Vendido"]
-   .includes(product.status)
-   ? product.status : "Disponível";
-
-  const statusClass = status==="Vendido"?"vendido":
-   status==="Reservado"?"reservado":"";
-
-  const card = document.createElement("article");
-  card.className = "card";
-
-  const photoArea = document.createElement("div");
-  photoArea.className = "photos";
-
-  if(photos.length){
-   photos.forEach((url,index)=>{
-    const img = document.createElement("img");
-    img.src = optimizedURL(url);
-    img.loading = "lazy";
-    img.alt = "Foto "+(index+1);
-    img.addEventListener("click",()=>{
-     openGallery(product.id,index);
-    });
-    photoArea.append(img);
-   });
-  }else{
-   photoArea.innerHTML =
-    '<div class="no-photo"><i class="fa-solid fa-image"></i></div>';
-  }
-
-  const body = document.createElement("div");
-  body.className = "card-body";
-
-  body.innerHTML = `
-   <div class="category">
-    ${escapeHTML(product.category||"Outros")}
-    • ${escapeHTML(product.condition||"")}
-   </div>
-
-   <h3>${escapeHTML(product.name)}</h3>
-
-   <div class="price">${money(product.price)}</div>
-
-   <span class="status ${statusClass}">
-    ${escapeHTML(status)}
-   </span>
-
-   <div class="description">${
-    escapeHTML(product.description||"Sem descrição.")
-   }</div>
-
-   <div class="card-actions">
-    <button class="btn gray edit-btn">
-     <i class="fa-solid fa-pen"></i> Editar
-    </button>
-    <button class="btn red delete-btn">
-     <i class="fa-solid fa-trash"></i> Excluir
-    </button>
-   </div>
-  `;
-
-  body.querySelector(".edit-btn").addEventListener(
-   "click",()=>openForm(product.id)
-  );
-
-  body.querySelector(".delete-btn").addEventListener(
-   "click",()=>removeProduct(product.id)
-  );
-
-  card.append(photoArea,body);
-  container.append(card);
- }
+if(!list.length){
+const empty=document.createElement("div");
+empty.className="empty";
+empty.textContent="Nenhuma peça encontrada nesta seção.";
+container.append(empty);
+return;
 }
 
-/* ===========================================
-   ABRIR CADASTRO
-=========================================== */
+for(const product of list){
+const photos=Array.isArray(product.photos)?
+product.photos:[];
+const status=["Disponível","Reservado","Vendido"]
+.includes(product.status)?
+product.status:"Disponível";
 
-$("addButton").addEventListener("click",()=>openForm());
+const statusClass=status==="Vendido"?"vendido":
+status==="Reservado"?"reservado":"";
 
-$("cancelButton").addEventListener("click",()=>{
- closeForm();
+const card=document.createElement("article");
+card.className="card";
+
+const photoArea=document.createElement("div");
+photoArea.className="photos";
+
+if(photos.length){
+photos.forEach((url,index)=>{
+const img=document.createElement("img");
+img.src=optimizedURL(url);
+img.loading="lazy";
+img.alt="Foto "+(index+1);
+img.addEventListener("click",()=>{
+openGallery(product.id,index);
 });
+photoArea.append(img);
+});
+}else{
+photoArea.innerHTML=
+'<div class="no-photo"><i class="fa-solid fa-image"></i></div>';
+}
+
+const body=document.createElement("div");
+body.className="card-body";
+body.innerHTML=`
+<div class="category">
+${escapeHTML(product.category||"Outros")}
+• ${escapeHTML(product.condition||"")}
+</div>
+<h3>${escapeHTML(product.name||"Sem título")}</h3>
+<div class="price">${money(product.price)}</div>
+<span class="status ${statusClass}">
+${escapeHTML(status)}
+</span>
+<div class="description">${
+escapeHTML(product.description||"Sem descrição.")
+}</div>
+<div class="card-actions">
+<button class="btn gray edit-btn">
+<i class="fa-solid fa-pen"></i> Editar
+</button>
+<button class="btn red delete-btn">
+<i class="fa-solid fa-trash"></i> Excluir
+</button>
+</div>`;
+
+body.querySelector(".edit-btn").addEventListener(
+"click",()=>openForm(product.id));
+body.querySelector(".delete-btn").addEventListener(
+"click",()=>removeProduct(product.id));
+
+card.append(photoArea,body);
+container.append(card);
+}
+}
+
+/* CADASTRAR E EDITAR */
+$("addButton").addEventListener("click",()=>openForm());
+$("cancelButton").addEventListener("click",()=>closeForm());
 
 function openForm(id=null){
- if(!currentUser || busy)return;
+if(!currentUser){
+notify("Aguarde a conexão com o Firebase.");
+return;
+}
+if(busy)return;
 
- editingId = id;
- savedPhotos = [];
- newPhotos = [];
+editingId=id;
+savedPhotos=[];
+newPhotos=[];
+$("productForm").reset();
+$("productPhotos").value="";
 
- $("productForm").reset();
- $("productPhotos").value = "";
+if(id){
+const item=products.find(p=>p.id===id);
+if(!item)return;
 
- if(id){
-  const item = products.find(p=>p.id===id);
-  if(!item)return;
-
-  $("formTitle").textContent = "Editar Peça";
-  $("productOwner").value = item.owner||"Antonio";
-  $("productName").value = item.name||"";
-  $("productCategory").value = item.category||"Outros";
-  $("productPrice").value = item.price??0;
-  $("productCondition").value = item.condition||"Nova";
-  $("productStatus").value = item.status||"Disponível";
-  $("productDescription").value = item.description||"";
-
-  savedPhotos = Array.isArray(item.photos)
-   ? [...item.photos] : [];
- }else{
-  $("formTitle").textContent = "Adicionar Peça";
- }
-
- renderPhotoPreview();
- $("formOverlay").classList.remove("hidden");
+$("formTitle").textContent="Editar Peça";
+$("productOwner").value=item.owner||"Antonio";
+$("productName").value=item.name||"";
+$("productCategory").value=item.category||"Outros";
+$("productPrice").value=item.price??0;
+$("productCondition").value=item.condition||"Nova";
+$("productStatus").value=item.status||"Disponível";
+$("productDescription").value=item.description||"";
+savedPhotos=Array.isArray(item.photos)?[...item.photos]:[];
+}else{
+$("formTitle").textContent="Adicionar Peça";
 }
 
-function closeForm(force=false){
- if(busy && !force)return;
- $("formOverlay").classList.add("hidden");
- editingId = null;
- newPhotos = [];
- savedPhotos = [];
- $("productPhotos").value = "";
+renderPhotoPreview();
+$("formOverlay").classList.remove("hidden");
 }
 
-/* ===========================================
-   PRÉVIA DAS FOTOS
-=========================================== */
+function closeForm(){
+if(busy)return;
+$("formOverlay").classList.add("hidden");
+editingId=null;
+savedPhotos=[];
+newPhotos=[];
+$("productPhotos").value="";
+}
 
+/* FOTOGRAFIAS */
 $("productPhotos").addEventListener("change",e=>{
- const files = [...e.target.files];
+const files=[...e.target.files];
 
- for(const file of files){
-  if(!file.type.startsWith("image/")){
-   notify("Selecione somente imagens.");
-   continue;
-  }
-  if(file.size>10*1024*1024){
-   notify("Cada fotografia deve ter no máximo 10 MB.");
-   continue;
-  }
-  if(savedPhotos.length+newPhotos.length>=15){
-   notify("Limite de 15 fotos por peça.");
-   break;
-  }
-  newPhotos.push(file);
- }
+for(const file of files){
+if(!file.type.startsWith("image/")){
+notify("Selecione somente imagens.");
+continue;
+}
+if(file.size>10*1024*1024){
+notify("Imagem acima de 10 MB.");
+continue;
+}
+if(savedPhotos.length+newPhotos.length>=15){
+notify("Limite de 15 fotografias.");
+break;
+}
+newPhotos.push(file);
+}
 
- e.target.value = "";
- renderPhotoPreview();
+e.target.value="";
+renderPhotoPreview();
 });
 
 function renderPhotoPreview(){
- const preview = $("photoPreview");
- preview.replaceChildren();
+const preview=$("photoPreview");
+preview.replaceChildren();
 
- savedPhotos.forEach((url,index)=>{
-  const box = createPhotoBox(
-   optimizedURL(url),
-   ()=>{
-    savedPhotos.splice(index,1);
-    renderPhotoPreview();
-   }
-  );
-  preview.append(box);
- });
+savedPhotos.forEach((url,index)=>{
+preview.append(createPhotoBox(optimizedURL(url),()=>{
+savedPhotos.splice(index,1);
+renderPhotoPreview();
+}));
+});
 
- newPhotos.forEach((file,index)=>{
-  const url = URL.createObjectURL(file);
-
-  const box = createPhotoBox(
-   url,
-   ()=>{
-    newPhotos.splice(index,1);
-    renderPhotoPreview();
-   }
-  );
-
-  const img = box.querySelector("img");
-  img.onload = ()=>URL.revokeObjectURL(url);
-
-  preview.append(box);
- });
+newPhotos.forEach((file,index)=>{
+const url=URL.createObjectURL(file);
+const box=createPhotoBox(url,()=>{
+newPhotos.splice(index,1);
+renderPhotoPreview();
+});
+const img=box.querySelector("img");
+img.onload=()=>URL.revokeObjectURL(url);
+preview.append(box);
+});
 }
 
 function createPhotoBox(url,onRemove){
- const box = document.createElement("div");
- box.className = "photo-item";
-
- const image = document.createElement("img");
- image.src = url;
-
- const button = document.createElement("button");
- button.type = "button";
- button.textContent = "×";
- button.addEventListener("click",onRemove);
-
- box.append(image,button);
- return box;
+const box=document.createElement("div");
+box.className="photo-item";
+const image=document.createElement("img");
+image.src=url;
+const button=document.createElement("button");
+button.type="button";
+button.textContent="×";
+button.addEventListener("click",onRemove);
+box.append(image,button);
+return box;
 }
 
-/* ===========================================
-   UPLOAD CLOUDINARY
-=========================================== */
-
+/* CLOUDINARY */
 async function uploadPhoto(file){
- const form = new FormData();
+const form=new FormData();
+form.append("file",file);
+form.append("upload_preset",CLOUDINARY_PRESET);
 
- form.append("file",file);
- form.append("upload_preset",CLOUDINARY_PRESET);
+const response=await fetch(
+`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`,
+{method:"POST",body:form}
+);
 
- const response = await fetch(
-  `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`,
-  {method:"POST",body:form}
- );
+const result=await response.json();
 
- const data = await response.json();
-
- if(!response.ok || data.error || !data.secure_url){
-  throw new Error(
-   data.error?.message||"Erro ao enviar imagem"
-  );
- }
-
- return data.secure_url;
+if(!response.ok||result.error||!result.secure_url){
+throw new Error(result.error?.message||
+"Erro no upload da fotografia.");
+}
+return result.secure_url;
 }
 
-/* ===========================================
-   SALVAR PRODUTO
-=========================================== */
-
+/* SALVAR */
 $("productForm").addEventListener("submit",async e=>{
- e.preventDefault();
+e.preventDefault();
+if(!currentUser||busy)return;
 
- if(!currentUser || busy)return;
+const name=$("productName").value.trim();
+const price=Number($("productPrice").value);
 
- const name = $("productName").value.trim();
- const price = Number($("productPrice").value);
+if(!name||!Number.isFinite(price)||price<0){
+notify("Preencha nome e preço válidos.");
+return;
+}
 
- if(!name || !Number.isFinite(price) || price<0){
-  notify("Preencha nome e preço válidos.");
-  return;
- }
+busy=true;
+const button=$("saveButton");
+button.disabled=true;
+button.textContent="Salvando...";
 
- busy = true;
+try{
+const photos=[...savedPhotos];
 
- const button = $("saveButton");
- button.disabled = true;
- button.textContent = "Salvando...";
+for(let i=0;i<newPhotos.length;i++){
+button.textContent=
+`Enviando foto ${i+1} de ${newPhotos.length}...`;
+const url=await uploadPhoto(newPhotos[i]);
+photos.push(url);
+}
 
- try{
-  const photos = [...savedPhotos];
+const data={
+owner:$("productOwner").value,
+name,
+category:$("productCategory").value,
+price,
+condition:$("productCondition").value,
+status:$("productStatus").value,
+description:$("productDescription").value.trim(),
+photos,
+updatedAt:Date.now()
+};
 
-  for(let i=0;i<newPhotos.length;i++){
-   button.textContent =
-    `Enviando foto ${i+1} de ${newPhotos.length}...`;
+button.textContent="Salvando peça...";
 
-   const url = await uploadPhoto(newPhotos[i]);
-   photos.push(url);
-  }
+if(editingId){
+await updateDoc(doc(db,COLLECTION_NAME,editingId),data);
+notify("Peça atualizada com sucesso!");
+}else{
+data.createdAt=Date.now();
+data.createdBy=currentUser.uid;
+await addDoc(productsRef,data);
+notify("Peça cadastrada com sucesso!");
+}
 
-  const data = {
-   owner:$("productOwner").value,
-   name,
-   category:$("productCategory").value,
-   price,
-   condition:$("productCondition").value,
-   status:$("productStatus").value,
-   description:$("productDescription").value.trim(),
-   photos,
-   updatedAt:Date.now()
-  };
-
-  button.textContent = "Salvando peça...";
-
-  if(editingId){
-   await updateDoc(
-    doc(db,COLLECTION_NAME,editingId),
-    data
-   );
-   notify("Peça atualizada com sucesso!");
-  }else{
-   data.createdAt = Date.now();
-   data.createdBy = currentUser.uid;
-
-   await addDoc(productsRef,data);
-   notify("Peça cadastrada com sucesso!");
-  }
-
-  busy = false;
-  closeForm();
-
- }catch(error){
-  console.error(error);
-  notify("Erro ao salvar: "+error.message);
- }finally{
-  busy = false;
-  button.disabled = false;
-  button.textContent = "Salvar Peça";
- }
+busy=false;
+closeForm();
+}catch(error){
+console.error(error);
+notify("Erro ao salvar: "+error.message);
+}finally{
+busy=false;
+button.disabled=false;
+button.textContent="Salvar Peça";
+}
 });
 
-/* ===========================================
-   EXCLUIR PRODUTO
-=========================================== */
-
+/* EXCLUSÃO */
 async function removeProduct(id){
- if(!currentUser || busy)return;
+if(!currentUser||busy)return;
+const item=products.find(p=>p.id===id);
+if(!item)return;
 
- const item = products.find(p=>p.id===id);
- if(!item)return;
+if(!confirm(`Excluir a peça "${item.name}"?`))return;
 
- if(!confirm(`Excluir a peça "${item.name}"?`))return;
-
- busy = true;
-
- try{
-  await deleteDoc(doc(db,COLLECTION_NAME,id));
-  notify("Peça excluída com sucesso!");
- }catch(error){
-  console.error(error);
-  notify("Não foi possível excluir a peça.");
- }finally{
-  busy = false;
- }
+busy=true;
+try{
+await deleteDoc(doc(db,COLLECTION_NAME,id));
+notify("Peça excluída com sucesso!");
+}catch(error){
+console.error(error);
+notify("Erro ao excluir. Confira as permissões.");
+}finally{
+busy=false;
+}
 }
 
-/* ===========================================
-   VISUALIZADOR DE FOTOGRAFIAS
-=========================================== */
-
+/* GALERIA */
 function openGallery(id,index){
- const item = products.find(p=>p.id===id);
- if(!item)return;
+const item=products.find(p=>p.id===id);
+if(!item)return;
+galleryPhotos=Array.isArray(item.photos)?item.photos:[];
+if(!galleryPhotos.length)return;
 
- galleryPhotos = Array.isArray(item.photos)
-  ? item.photos : [];
-
- if(!galleryPhotos.length)return;
-
- galleryIndex = index;
- $("galleryTitle").textContent = item.name;
- $("galleryOverlay").classList.remove("hidden");
- updateGallery();
+galleryIndex=index;
+$("galleryTitle").textContent=item.name;
+$("galleryOverlay").classList.remove("hidden");
+updateGallery();
 }
 
 function updateGallery(){
- $("galleryImage").src = galleryPhotos[galleryIndex];
- $("galleryCounter").textContent =
-  `${galleryIndex+1} de ${galleryPhotos.length}`;
+$("galleryImage").src=galleryPhotos[galleryIndex];
+$("galleryCounter").textContent=
+`${galleryIndex+1} de ${galleryPhotos.length}`;
 }
 
 function changeGallery(direction){
- if(!galleryPhotos.length)return;
- galleryIndex = (
-  galleryIndex+direction+galleryPhotos.length
- )%galleryPhotos.length;
- updateGallery();
+if(!galleryPhotos.length)return;
+galleryIndex=(
+galleryIndex+direction+galleryPhotos.length
+)%galleryPhotos.length;
+updateGallery();
 }
 
 $("prevPhoto").addEventListener("click",()=>{
- changeGallery(-1);
+changeGallery(-1);
 });
-
 $("nextPhoto").addEventListener("click",()=>{
- changeGallery(1);
+changeGallery(1);
 });
-
 $("closeGallery").addEventListener("click",()=>{
- $("galleryOverlay").classList.add("hidden");
- $("galleryImage").removeAttribute("src");
+$("galleryOverlay").classList.add("hidden");
+$("galleryImage").removeAttribute("src");
 });
 
 document.addEventListener("keydown",e=>{
- if($("galleryOverlay").classList.contains("hidden"))return;
-
- if(e.key==="ArrowLeft")changeGallery(-1);
- if(e.key==="ArrowRight")changeGallery(1);
-
- if(e.key==="Escape"){
-  $("galleryOverlay").classList.add("hidden");
-  $("galleryImage").removeAttribute("src");
- }
+if($("galleryOverlay").classList.contains("hidden"))return;
+if(e.key==="ArrowLeft")changeGallery(-1);
+if(e.key==="ArrowRight")changeGallery(1);
+if(e.key==="Escape"){
+$("galleryOverlay").classList.add("hidden");
+$("galleryImage").removeAttribute("src");
+}
 });
 
-/* ===========================================
-   INICIALIZAÇÃO
-=========================================== */
-
 renderProducts();
-
 </script>
 </body>
 </html>
