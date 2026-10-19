@@ -3,954 +3,1772 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080a10">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#05070a">
 <title>LOTHWAR | Acervo de Peças</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
 :root{
---bg:#05070a;--header:#0a0e14;--card:#12161f;
---cardTop:#232a38;--border:#2e3646;--text:#eef1f6;
---muted:#8a93a6;--purple:#8b5cf6;--green:#35d488;
---blue:#3fc8ff;--orange:#f0b94d;--red:#ff6a3d
+ --bg:#05070a;
+ --panel:#12161f;
+ --border:#323847;
+ --text:#eef1f6;
+ --muted:#9aa3b5;
+ --purple:#8b5cf6;
+ --blue:#3fc8ff;
+ --orange:#f0b94d;
+ --red:#ff6a3d;
+ --green:#35d488;
 }
 *{box-sizing:border-box}
 body{
-margin:0;background:var(--bg);color:var(--text);
-font-family:Rajdhani,Arial,sans-serif;font-size:16px
+ margin:0;background:var(--bg);color:var(--text);
+ font:16px Rajdhani,Arial,sans-serif;
 }
 button,input,select,textarea{font:inherit}
-button{cursor:pointer;transition:.2s}
-button:hover{filter:brightness(1.12)}
-button:disabled{opacity:.5;cursor:wait}
+button{cursor:pointer}
+button:disabled{opacity:.55;cursor:wait}
 .hidden{display:none!important}
+.btn{
+ border:0;border-radius:6px;padding:10px 12px;
+ color:white;font-weight:700;
+}
+.purple{background:var(--purple)}
+.gray{background:#555e6e}
+.blue{background:var(--blue)}
+.red{background:var(--red)}
+.orange{background:var(--orange);color:#111}
 header{
-background:var(--header);border-bottom:1px solid var(--border);
-padding:15px 4%;display:flex;justify-content:space-between;
-align-items:center;gap:15px;flex-wrap:wrap;
-position:sticky;top:0;z-index:20
+ display:flex;justify-content:space-between;
+ align-items:center;flex-wrap:wrap;gap:14px;
+ padding:15px 4%;background:#0a0e14;
+ border-bottom:1px solid var(--border);
 }
 .brand{display:flex;align-items:center;gap:12px}
 .brand-icon{
-width:46px;height:46px;border-radius:12px;
-background:linear-gradient(135deg,#8b5cf6,#3fc8ff);
-display:grid;place-items:center;font-size:23px
+ width:44px;height:44px;border-radius:11px;
+ background:linear-gradient(135deg,var(--purple),var(--blue));
+ display:grid;place-items:center;font-size:23px;
 }
-.brand h1{
-font-family:Orbitron,sans-serif;font-size:21px;
-letter-spacing:2px;margin:0
-}
+.brand h1{margin:0;font:800 20px Orbitron,sans-serif}
 .brand small{color:var(--muted);letter-spacing:2px}
 .header-actions{
-display:flex;align-items:center;gap:9px;flex-wrap:wrap
+ display:flex;align-items:center;gap:9px;flex-wrap:wrap;
 }
-.search,select{
-background:#12161f;color:white;border:1px solid var(--border);
-border-radius:8px;padding:11px;outline:none
+.header-actions input,.header-actions select{
+ background:var(--panel);
+ border:1px solid var(--border);
+ color:white;padding:11px;border-radius:8px;
 }
-.search{min-width:205px}
-.search:focus,select:focus{border-color:var(--purple)}
-.btn{
-border:0;border-radius:8px;padding:11px 16px;
-color:white;font-weight:700;display:inline-flex;
-align-items:center;justify-content:center;gap:7px
+#categoryFilter{
+ min-width:175px;
+ max-width:220px;
+ cursor:pointer;
 }
-.purple{background:var(--purple)}
-.green{background:var(--green);color:#07100b}
-.gray{background:#343c4b}
-.red{background:var(--red)}
-.blue{background:#1b6fe0}
-.container{max-width:1450px;margin:auto;padding:28px 4%}
+#categoryFilter option{
+ background:#10141d;color:white;
+}
+.connection{font-size:13px;color:var(--orange)}
+.connection.online{color:var(--green)}
+.container{
+ max-width:1450px;margin:auto;padding:28px 4%;
+}
 .hero{
-background:linear-gradient(120deg,#1a1134,#0b1422);
-border:1px solid #342455;border-radius:16px;
-padding:25px;margin-bottom:28px
+ padding:24px;border:1px solid #342455;
+ border-radius:15px;
+ background:linear-gradient(120deg,#1a1134,#0b1422);
+ margin-bottom:28px;
 }
 .hero h2{
-font:800 clamp(18px,3vw,27px) Orbitron,sans-serif;
-margin:0 0 10px
+ font:800 clamp(18px,3vw,26px) Orbitron,sans-serif;
+ margin:0 0 10px;
 }
-.hero p{color:var(--muted);margin:0}
+.hero p{margin:0;color:var(--muted)}
 .stats{
-display:grid;grid-template-columns:repeat(3,1fr);
-gap:12px;margin-top:24px
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:12px;margin-top:22px;
 }
 .stat{
-background:#101625;border:1px solid var(--border);
-padding:16px;border-radius:10px
+ background:#101625;border:1px solid var(--border);
+ padding:15px;border-radius:10px;
 }
 .stat small{display:block;color:var(--muted)}
-.stat strong{font:800 25px Orbitron,sans-serif}
-.section{margin-bottom:45px}
+.stat strong{font:800 24px Orbitron,sans-serif}
+.section{margin-bottom:40px}
 .section-head{
-display:flex;align-items:center;justify-content:space-between;
-border-bottom:1px solid var(--border);
-padding-bottom:14px;margin-bottom:20px;gap:10px
+ display:flex;justify-content:space-between;gap:10px;
+ border-bottom:1px solid var(--border);
+ padding-bottom:13px;margin-bottom:18px;
 }
 .section-head h2{
-margin:0;font:700 18px Orbitron,sans-serif
+ font:700 17px Orbitron,sans-serif;margin:0;
 }
-.section-head span{color:#c4b5fd;font-weight:700}
+.section-head span{color:#c4b5fd}
 .products{
-display:grid;grid-template-columns:
-repeat(auto-fill,minmax(255px,1fr));gap:18px
+ display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+ gap:18px;
 }
 .card{
-background:linear-gradient(165deg,var(--cardTop),var(--card) 65%);
-border:1px solid var(--border);border-radius:13px;
-overflow:hidden;display:flex;flex-direction:column
+ min-width:0;
+ background:linear-gradient(160deg,#232a38,#12161f 65%);
+ border:1px solid var(--border);
+ border-radius:12px;padding:7px;
+ display:flex;flex-direction:column;
 }
-.card:hover{border-color:#66518c}
+.card.promo{border-color:var(--orange)}
+.card.sold{opacity:.72}
+.pack-tabs{
+ display:grid;grid-template-columns:1fr 1fr;
+ gap:5px;margin-bottom:7px;
+}
+.pack-tab{
+ border:1px solid var(--border);
+ background:#151a24;color:#c6c9d2;
+ border-radius:5px;padding:8px 3px;font-weight:700;
+}
+.pack-tab.active{background:var(--purple);color:white}
 .photos{
-height:245px;background:#080b10;
-display:flex;overflow-x:auto;scroll-snap-type:x mandatory
+ display:flex;gap:5px;overflow-x:auto;
+ scroll-snap-type:x mandatory;
+ width:100%;aspect-ratio:1;
 }
-.photos img{
-width:100%;height:100%;flex:0 0 100%;
-object-fit:contain;scroll-snap-align:start;cursor:pointer
+.photo-page{
+ flex:0 0 100%;display:grid;min-width:0;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ grid-template-rows:repeat(2,minmax(0,1fr));
+ gap:5px;scroll-snap-align:start;
+}
+.photo-page img{
+ width:100%;height:100%;min-width:0;min-height:0;
+ object-fit:contain;background:#080b10;
+ border-radius:12px;cursor:pointer;
+}
+.photo-page[data-count="1"]{
+ grid-template-columns:1fr;grid-template-rows:1fr;
+}
+.photo-page[data-count="2"]{grid-template-rows:1fr}
+.photo-page[data-count="3"] img:first-child{
+ grid-column:span 2;
 }
 .no-photo{
-height:245px;width:100%;display:grid;
-place-items:center;color:#434a5c;font-size:47px
+ width:100%;aspect-ratio:1;
+ display:grid;place-items:center;
+ background:#080b10;color:#667084;
+ border-radius:10px;text-align:center;
 }
 .card-body{
-display:flex;flex-direction:column;gap:10px;
-padding:16px;flex:1
+ padding:10px 2px 2px;
+ display:flex;flex-direction:column;gap:10px;flex:1;
 }
-.card h3{margin:0;font-size:19px;overflow-wrap:anywhere}
-.category{color:var(--muted);font-size:13px}
-.price{
-color:var(--orange);font:800 19px Orbitron,sans-serif
+.card h3{
+ font-size:16px;line-height:1.35;
+ margin:0;overflow-wrap:anywhere;
 }
+.category{color:#9cafff;font-size:12px}
 .description{
-color:#cbd2de;font-size:14px;
-white-space:pre-wrap;overflow-wrap:anywhere
+ white-space:pre-wrap;overflow-wrap:anywhere;
+ font-size:13px;line-height:1.4;
 }
-.status{
-display:inline-block;width:fit-content;
-padding:5px 10px;border-radius:20px;
-background:#15352a;color:var(--green);
-font-size:12px;font-weight:700
+.price{
+ font:800 19px Orbitron,sans-serif;
+ color:var(--orange);margin:5px 0 12px;
 }
-.status.reservado{
-background:#3a3017;color:var(--orange)
-}
-.status.vendido{
-background:#3d201b;color:var(--red)
-}
+.promo-label{color:var(--orange);font-weight:700}
+.status{color:var(--green);font-weight:700}
 .card-actions{
-margin-top:auto;display:flex;gap:7px;padding-top:12px
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:5px;margin-top:auto;padding-top:18px;
 }
-.card-actions button{flex:1;font-size:13px}
+.card-actions button{
+ min-width:0;padding:8px 3px;font-size:12px;
+}
+.action-copy{background:var(--purple)}
+.action-edit{background:var(--blue)}
+.action-promo{background:var(--orange);color:#111}
+.action-sold{background:var(--red)}
+.action-delete{background:#555e6e}
+.action-zip1{background:#5366d5}
+.action-zip2{background:#7451b9}
 .empty{
-grid-column:1/-1;text-align:center;padding:40px 15px;
-color:var(--muted);border:1px dashed var(--border);
-border-radius:12px
+ grid-column:1/-1;padding:32px;text-align:center;
+ color:var(--muted);
+ border:1px dashed var(--border);border-radius:10px;
 }
-.overlay{
-position:fixed;inset:0;z-index:100;
-background:rgba(0,0,0,.88);
-display:flex;justify-content:center;align-items:center;
-padding:15px;overflow:auto
+
+/* EDITOR */
+.editor-overlay{
+ position:fixed;inset:0;z-index:120;background:#18191a;
 }
-.modal{
-background:#101219;border:1px solid #34304c;
-border-radius:18px;width:100%;max-width:570px;
-max-height:95vh;overflow-y:auto;padding:25px
+.editor-layout{
+ display:grid;grid-template-columns:340px minmax(0,1fr);
+ height:100dvh;
 }
-.modal h2{
-font:700 19px Orbitron,sans-serif;
-color:#c4b5fd;margin:0 0 20px
+.editor-sidebar{
+ display:flex;flex-direction:column;min-height:0;
+ background:#242526;border-right:1px solid #3e4042;
 }
-.form-group{margin-bottom:14px}
-.form-group label{
-display:block;font-weight:700;
-color:var(--muted);margin-bottom:6px
+.editor-topbar{
+ display:flex;align-items:center;gap:11px;
+ padding:12px 14px;border-bottom:1px solid #3e4042;
 }
-.form-group input,.form-group select,
-.form-group textarea{
-width:100%;background:#0a0c10;
-border:1px solid var(--border);
-color:white;border-radius:8px;
-padding:12px;outline:none
+.editor-topbar h2{font-size:17px;margin:0}
+.editor-close{
+ width:35px;height:35px;border:0;
+ border-radius:50%;background:#3a3b3c;color:white;
 }
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{
-border-color:var(--purple)
+.editor-fields{
+ overflow-y:auto;min-height:0;flex:1;padding:14px;
 }
-.form-group textarea{min-height:100px;resize:vertical}
-.form-actions{display:flex;gap:10px;margin-top:20px}
-.form-actions .btn{flex:1}
-.photo-preview{
-display:grid;grid-template-columns:repeat(4,1fr);
-gap:8px;margin-top:12px
+.editor-user{
+ display:flex;align-items:center;gap:10px;margin-bottom:14px;
 }
-.photo-item{position:relative;overflow:hidden}
+.avatar{
+ width:38px;height:38px;border-radius:50%;
+ background:#505257;display:grid;place-items:center;
+}
+.editor-user small{display:block;color:#b0b3b8}
+.image-pack{
+ border:1px solid #49435d;border-radius:10px;
+ padding:12px;margin-bottom:14px;background:#201e29;
+}
+.image-pack.joab{
+ border-color:#495d88;background:#1e2431;
+}
+.image-pack h3{font-size:16px;margin:0 0 5px}
+.image-pack p{
+ font-size:12px;color:#b0b3b8;margin:0 0 11px;
+}
+.editor-upload{
+ min-height:95px;background:#292a2d;
+ border:1px dashed #72727a;
+ border-radius:8px;display:flex;
+ flex-direction:column;align-items:center;
+ justify-content:center;gap:6px;
+ padding:14px;text-align:center;cursor:pointer;
+}
+.editor-upload i{font-size:24px}
+.editor-upload small{color:#b0b3b8}
+.editor-upload.dragging{
+ background:#44365a;border-color:#c4b5fd;
+}
+.editor-thumbs{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:7px;margin-top:10px;
+}
+.photo-item{position:relative}
 .photo-item img{
-width:100%;height:85px;object-fit:cover;
-border-radius:7px
+ width:100%;height:76px;object-fit:cover;border-radius:6px;
 }
 .photo-item button{
-position:absolute;top:3px;right:3px;
-border:0;border-radius:5px;
-background:var(--red);color:white;padding:2px 7px
+ position:absolute;top:3px;right:3px;
+ background:var(--red);color:white;
+ border:0;border-radius:4px;
 }
-#message{
-position:fixed;bottom:20px;left:50%;
-transform:translateX(-50%);
-background:#252b39;border:1px solid var(--purple);
-border-radius:10px;padding:14px 20px;
-z-index:500;max-width:90vw;text-align:center;
-box-shadow:0 8px 30px #0008
+.editor-group{
+ border:1px solid #60636a;border-radius:7px;
+ padding:8px 11px;margin-bottom:12px;
 }
-.gallery-modal{max-width:900px;text-align:center}
-.gallery-modal img{
-width:100%;max-height:65vh;object-fit:contain
+.editor-group:focus-within{border-color:var(--purple)}
+.editor-group label{
+ display:block;font-size:12px;color:#b0b3b8;
+}
+.editor-group input,
+.editor-group textarea,
+.editor-group select{
+ background:transparent;border:0;outline:0;
+ color:white;width:100%;padding:4px 0;
+}
+.editor-group select option{background:#242526}
+.editor-group textarea{min-height:95px;resize:vertical}
+.editor-footer{
+ padding:12px;display:flex;gap:9px;
+ border-top:1px solid #3e4042;background:#242526;
+}
+.editor-footer button{flex:1}
+.editor-publish{background:#2d88ff}
+.editor-preview{
+ min-height:0;overflow-y:auto;padding:16px;
+ display:flex;flex-direction:column;gap:12px;
+}
+.market-frame{
+ display:grid;
+ grid-template-columns:minmax(0,1.8fr) minmax(260px,1fr);
+ flex:1;min-height:0;border-radius:8px;
+ border:1px solid #3e4042;
+ overflow:hidden;background:#242526;
+}
+.market-photo-area{
+ min-height:350px;position:relative;background:black;
+ display:flex;align-items:center;justify-content:center;
+}
+.market-photo-area img{
+ position:absolute;inset:0;
+ width:100%;height:100%;object-fit:contain;
+}
+.placeholder{font-size:55px;color:#adb1b8}
+.market-arrow{
+ position:absolute;top:50%;
+ transform:translateY(-50%);
+ border:0;border-radius:50%;
+ width:38px;height:38px;z-index:2;
+ background:#dedfe3;color:#111;
+}
+.market-prev{left:10px}
+.market-next{right:10px}
+.market-information{
+ padding:20px;overflow-y:auto;
+ border-left:1px solid #3e4042;
+}
+.market-information h3{
+ margin:0 0 8px;font-size:24px;overflow-wrap:anywhere;
+}
+.market-price{font-size:21px;font-weight:800}
+.market-meta{
+ font-size:13px;color:#b0b3b8;margin:8px 0;
+}
+.market-divider{
+ border-top:1px solid #3e4042;margin:17px 0;
+}
+.market-description{
+ white-space:pre-wrap;overflow-wrap:anywhere;
+}
+.market-seller{
+ display:flex;align-items:center;gap:10px;
+}
+.preview-pack-buttons{display:flex;gap:7px}
+.preview-pack-buttons button{
+ border:1px solid #53545a;
+ background:#242526;color:white;
+ border-radius:7px;padding:9px 13px;
+}
+.preview-pack-buttons button.active{
+ background:var(--purple);
+}
+.overlay{
+ position:fixed;inset:0;z-index:130;
+ background:#000e;display:flex;
+ align-items:center;justify-content:center;padding:15px;
+}
+.modal{
+ width:100%;max-width:900px;max-height:95vh;
+ overflow:auto;padding:22px;text-align:center;
+ background:#101219;border:1px solid #34304c;
+ border-radius:16px;
+}
+.modal img{
+ max-width:100%;max-height:65vh;object-fit:contain;
 }
 .gallery-buttons{
-display:flex;justify-content:center;
-gap:12px;margin-top:15px
+ display:flex;justify-content:center;
+ gap:10px;margin-top:14px;
 }
-.connection{
-font-size:13px;font-weight:700;
-color:var(--orange)
+#message{
+ position:fixed;z-index:500;left:50%;bottom:20px;
+ transform:translateX(-50%);
+ max-width:90vw;text-align:center;
+ background:#252b39;padding:13px 19px;
+ border-radius:9px;border:1px solid var(--purple);
 }
-.connection.online{color:var(--green)}
+@media(max-width:900px){
+ .editor-layout{
+  display:block;overflow-y:auto;height:100dvh;
+ }
+ .editor-sidebar{border-right:0}
+ .editor-fields{overflow:visible}
+ .editor-footer{position:sticky;bottom:0;z-index:5}
+ .editor-preview{overflow:visible}
+ .market-frame{display:flex;flex-direction:column}
+ .market-photo-area{height:350px}
+ .market-information{border-left:0}
+}
 @media(max-width:700px){
-header{padding:14px}
-.container{padding:18px 13px}
-.header-actions{width:100%}
-.search{flex:1;min-width:130px}
-.stats{gap:7px}
-.stat{padding:11px}
-.stat strong{font-size:18px}
-.section-head h2{font-size:14px}
-.products{
-grid-template-columns:repeat(2,minmax(0,1fr));gap:9px
+ header{padding:13px}
+ .header-actions{width:100%}
+ .header-actions input{flex:1;min-width:110px}
+ #categoryFilter{flex:1;min-width:130px;max-width:none}
+ .container{padding:18px 13px}
+ .stats{gap:7px}
+ .stat{padding:10px}
+ .stat strong{font-size:18px}
+ .section-head h2{font-size:14px}
+ .products{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+ }
+ .card{padding:5px}
+ .card h3{font-size:13px}
+ .description{font-size:12px}
+ .price{font-size:15px}
+ .card-actions button{font-size:11px}
+ .preview-pack-buttons button{flex:1}
 }
-.photos,.no-photo{height:160px}
-.card-body{padding:10px;gap:8px}
-.card h3{font-size:15px}
-.price{font-size:15px}
-.card-actions{flex-wrap:wrap}
-.modal{padding:18px}
-.photo-preview{grid-template-columns:repeat(3,1fr)}
-}
-@media(max-width:360px){
-.products{grid-template-columns:1fr}
+@media(max-width:370px){
+ .products{grid-template-columns:1fr}
 }
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="brand">
-<div class="brand-icon">
-<i class="fa-solid fa-microchip"></i>
-</div>
-<div>
-<h1>LOTHWAR</h1>
-<small>ACERVO DE PEÇAS</small>
-</div>
-</div>
+ <div class="brand">
+  <div class="brand-icon">
+   <i class="fa-solid fa-microchip"></i>
+  </div>
+  <div>
+   <h1>LOTHWAR</h1>
+   <small>ACERVO DE PEÇAS</small>
+  </div>
+ </div>
 
-<div class="header-actions">
-<span class="connection" id="connection">
-<i class="fa-solid fa-circle"></i>
-Conectando...
-</span>
+ <div class="header-actions">
+  <span class="connection" id="connection">
+   ● Conectando...
+  </span>
 
-<input class="search" id="search"
-placeholder="Pesquisar peças...">
+  <input id="search" placeholder="Pesquisar peças...">
 
-<select id="statusFilter">
-<option value="">Todos os status</option>
-<option>Disponível</option>
-<option>Reservado</option>
-<option>Vendido</option>
-</select>
+  <!-- FILTRO DE CATEGORIAS -->
+  <select id="categoryFilter">
+   <option value="">Todas as categorias</option>
+  </select>
 
-<button class="btn purple" id="addButton">
-<i class="fa-solid fa-plus"></i>
-Adicionar Peça
-</button>
-</div>
+  <select id="statusFilter">
+   <option value="">Todos os status</option>
+   <option>Disponível</option>
+   <option>Reservado</option>
+   <option>Vendido</option>
+  </select>
+
+  <button class="btn purple" id="addButton">
+   + Adicionar Peça
+  </button>
+ </div>
 </header>
 
 <main class="container">
 
-<div class="hero">
-<h2>GERENCIAMENTO DE PEÇAS</h2>
-<p>
-Organize fotografias e descrições das peças do Antônio
-e do Joab. Acompanhe os produtos disponíveis,
-reservados e vendidos.
-</p>
+ <div class="hero">
+  <h2>GERENCIAMENTO DE PEÇAS</h2>
+  <p>Um único anúncio com fotos separadas para Antônio e Joab. Filtre por categoria, pesquise e gerencie seus anúncios.</p>
 
-<div class="stats">
-<div class="stat">
-<small>Total</small>
-<strong id="totalProducts">0</strong>
-</div>
-<div class="stat">
-<small>Antônio</small>
-<strong id="totalAntonio">0</strong>
-</div>
-<div class="stat">
-<small>Joab</small>
-<strong id="totalJoab">0</strong>
-</div>
-</div>
-</div>
+  <div class="stats">
+   <div class="stat">
+    <small>Total de anúncios</small>
+    <strong id="totalProducts">0</strong>
+   </div>
+   <div class="stat">
+    <small>Pacotes Antônio</small>
+    <strong id="totalAntonio">0</strong>
+   </div>
+   <div class="stat">
+    <small>Pacotes Joab</small>
+    <strong id="totalJoab">0</strong>
+   </div>
+  </div>
+ </div>
 
-<section class="section">
-<div class="section-head">
-<h2>
-<i class="fa-solid fa-images"></i>
-FOTOS DO ANTÔNIO
-</h2>
-<span id="countAntonio">0 peças</span>
-</div>
-<div class="products" id="productsAntonio"></div>
-</section>
+ <section class="section">
+  <div class="section-head">
+   <h2>
+    <i class="fa-solid fa-boxes-stacked"></i>
+    ANÚNCIOS CADASTRADOS
+   </h2>
+   <span id="countProducts">0 anúncios</span>
+  </div>
 
-<section class="section">
-<div class="section-head">
-<h2>
-<i class="fa-solid fa-images"></i>
-FOTOS DO JOAB
-</h2>
-<span id="countJoab">0 peças</span>
-</div>
-<div class="products" id="productsJoab"></div>
-</section>
+  <div class="products" id="productsContainer"></div>
+ </section>
 
 </main>
 
-<!-- FORMULÁRIO DE CADASTRO -->
-<div class="overlay hidden" id="formOverlay">
-<div class="modal">
+<!-- EDITOR -->
+<div class="editor-overlay hidden" id="formOverlay">
+ <div class="editor-layout">
 
-<h2 id="formTitle">Adicionar Peça</h2>
+  <div class="editor-sidebar">
+   <div class="editor-topbar">
+    <button class="editor-close" type="button" id="editorClose">
+     ✕
+    </button>
+    <h2 id="formTitle">Item para venda</h2>
+   </div>
 
-<form id="productForm">
+   <div class="editor-fields">
+    <div class="editor-user">
+     <div class="avatar">
+      <i class="fa-solid fa-user"></i>
+     </div>
+     <div>
+      <strong>LOTHWAR</strong>
+      <small>Cadastro compartilhado de peças</small>
+     </div>
+    </div>
 
-<div class="form-group">
-<label>Grupo das Fotos</label>
-<select id="productOwner" required>
-<option value="Antonio">Fotos do Antônio</option>
-<option value="Joab">Fotos do Joab</option>
-</select>
-</div>
+    <!-- IMAGENS DO ANTÔNIO -->
+    <div class="image-pack">
+     <h3>
+      <i class="fa-solid fa-images"></i>
+      Imagens 1 — Antônio
+     </h3>
+     <p>Fotografias para os anúncios do Antônio.</p>
 
-<div class="form-group">
-<label>Nome da Peça</label>
-<input id="productName" type="text"
-maxlength="150" required
-placeholder="Ex: RTX 5050 8GB">
-</div>
+     <label class="editor-upload"
+      id="dropAntonio" for="filesAntonio">
+      <i class="fa-solid fa-cloud-arrow-up"></i>
+      <strong>Adicionar fotos do Antônio</strong>
+      <small>Clique ou arraste as imagens</small>
+     </label>
 
-<div class="form-group">
-<label>Categoria</label>
-<select id="productCategory">
-<option>Placa de Vídeo</option>
-<option>Processador</option>
-<option>Placa-Mãe</option>
-<option>Memória RAM</option>
-<option>SSD / HD</option>
-<option>Fonte</option>
-<option>Gabinete</option>
-<option>Cooler / Fan</option>
-<option>Periféricos</option>
-<option>Computador Completo</option>
-<option>Outros</option>
-</select>
-</div>
+     <input id="filesAntonio" type="file"
+      accept="image/*" multiple hidden>
 
-<div class="form-group">
-<label>Preço (R$)</label>
-<input id="productPrice" type="number"
-min="0" step="0.01" required
-placeholder="0.00">
-</div>
+     <div id="previewAntonio" class="editor-thumbs"></div>
+    </div>
 
-<div class="form-group">
-<label>Condição</label>
-<select id="productCondition">
-<option>Nova</option>
-<option>Usada - Como nova</option>
-<option>Usada - Em boas condições</option>
-</select>
-</div>
+    <!-- IMAGENS DO JOAB -->
+    <div class="image-pack joab">
+     <h3>
+      <i class="fa-solid fa-images"></i>
+      Imagens 2 — Joab
+     </h3>
+     <p>Fotografias diferentes para o mesmo anúncio.</p>
 
-<div class="form-group">
-<label>Status</label>
-<select id="productStatus">
-<option>Disponível</option>
-<option>Reservado</option>
-<option>Vendido</option>
-</select>
-</div>
+     <label class="editor-upload"
+      id="dropJoab" for="filesJoab">
+      <i class="fa-solid fa-cloud-arrow-up"></i>
+      <strong>Adicionar fotos do Joab</strong>
+      <small>Clique ou arraste as imagens</small>
+     </label>
 
-<div class="form-group">
-<label>Descrição</label>
-<textarea id="productDescription"
-maxlength="5000"
-placeholder="Especificações, funcionamento, acessórios..."></textarea>
-</div>
+     <input id="filesJoab" type="file"
+      accept="image/*" multiple hidden>
 
-<div class="form-group">
-<label>Fotografias da Peça</label>
-<input type="file" id="productPhotos"
-multiple accept="image/*">
-<small style="color:var(--muted)">
-Até 15 fotografias por peça, com no máximo 10 MB cada.
-</small>
-<div class="photo-preview" id="photoPreview"></div>
-</div>
+     <div id="previewJoab" class="editor-thumbs"></div>
+    </div>
 
-<div class="form-actions">
-<button class="btn gray" type="button"
-id="cancelButton">Cancelar</button>
-<button class="btn purple" type="submit"
-id="saveButton">Salvar Peça</button>
-</div>
+    <!-- DADOS DO ANÚNCIO -->
+    <form id="productForm">
+     <div class="editor-group">
+      <label>Título</label>
+      <input id="productName" maxlength="150"
+       required placeholder="Nome da peça">
+     </div>
 
-</form>
-</div>
+     <div class="editor-group">
+      <label>Preço (R$)</label>
+      <input id="productPrice" type="number"
+       min="0" step="0.01" required>
+     </div>
+
+     <div class="editor-group">
+      <label>Categoria</label>
+      <select id="productCategory" required>
+       <option value="" disabled selected>
+        Selecione uma categoria
+       </option>
+      </select>
+     </div>
+
+     <div class="editor-group">
+      <label>Condição</label>
+      <select id="productCondition">
+       <option>Nova</option>
+       <option>Usada - Como nova</option>
+       <option>Usada - Em boas condições</option>
+      </select>
+     </div>
+
+     <div class="editor-group">
+      <label>Status</label>
+      <select id="productStatus">
+       <option>Disponível</option>
+       <option>Reservado</option>
+       <option>Vendido</option>
+      </select>
+     </div>
+
+     <div class="editor-group">
+      <label>Descrição</label>
+      <textarea id="productDescription" maxlength="5000"
+       placeholder="Descreva a peça e suas especificações"></textarea>
+     </div>
+    </form>
+   </div>
+
+   <div class="editor-footer">
+    <button class="btn gray" id="cancelButton">
+     Cancelar
+    </button>
+
+    <button class="btn editor-publish" id="saveButton"
+     type="submit" form="productForm">
+     Salvar anúncio
+    </button>
+   </div>
+  </div>
+
+  <!-- PRÉVIA -->
+  <div class="editor-preview">
+   <strong>Prévia do anúncio</strong>
+
+   <div class="preview-pack-buttons">
+    <button class="active" id="previewAntonioBtn">
+     Imagens 1 — Antônio
+    </button>
+    <button id="previewJoabBtn">
+     Imagens 2 — Joab
+    </button>
+   </div>
+
+   <div class="market-frame">
+    <div class="market-photo-area">
+     <img id="previewMainImage" class="hidden" alt="Prévia">
+
+     <div class="placeholder" id="previewPlaceholder">
+      <i class="fa-regular fa-image"></i>
+     </div>
+
+     <button class="market-arrow market-prev hidden"
+      id="previewPrev">❮</button>
+
+     <button class="market-arrow market-next hidden"
+      id="previewNext">❯</button>
+    </div>
+
+    <div class="market-information">
+     <h3 id="previewTitle">Título</h3>
+     <div class="market-price" id="previewPrice">R$ 0,00</div>
+
+     <div class="market-meta">Anunciado em Manaus</div>
+     <div class="market-divider"></div>
+
+     <strong>Detalhes</strong>
+     <p id="previewDescription" class="market-description">
+      A descrição aparecerá aqui.
+     </p>
+
+     <div class="market-divider"></div>
+
+     <div class="market-seller">
+      <div class="avatar">
+       <i class="fa-solid fa-user"></i>
+      </div>
+      <span id="previewSeller">Antônio</span>
+     </div>
+    </div>
+   </div>
+  </div>
+
+ </div>
 </div>
 
 <!-- GALERIA -->
 <div class="overlay hidden" id="galleryOverlay">
-<div class="modal gallery-modal">
-<h2 id="galleryTitle">Fotografias</h2>
-<img id="galleryImage" alt="Fotografia">
-<p id="galleryCounter"></p>
-<div class="gallery-buttons">
-<button class="btn gray" id="prevPhoto">
-<i class="fa-solid fa-chevron-left"></i>
-</button>
-<button class="btn purple" id="closeGallery">
-Fechar
-</button>
-<button class="btn gray" id="nextPhoto">
-<i class="fa-solid fa-chevron-right"></i>
-</button>
-</div>
-</div>
+ <div class="modal">
+  <h3 id="galleryTitle">Fotografias</h3>
+  <img id="galleryImage" alt="Fotografia">
+  <p id="galleryCounter"></p>
+
+  <div class="gallery-buttons">
+   <button class="btn gray" id="galleryPrev">
+    Anterior
+   </button>
+   <button class="btn purple" id="galleryClose">
+    Fechar
+   </button>
+   <button class="btn gray" id="galleryNext">
+    Próxima
+   </button>
+  </div>
+ </div>
 </div>
 
 <div id="message" class="hidden"></div>
 
 <script type="module">
+
 import {initializeApp} from
 "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
 
 import {
-getFirestore,collection,addDoc,onSnapshot,
-doc,updateDoc,deleteDoc
-} from
-"https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+ getFirestore,collection,addDoc,onSnapshot,
+ doc,updateDoc,deleteDoc
+} from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
 import {
-getAuth,onAuthStateChanged,signInAnonymously
-} from
-"https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+ getAuth,onAuthStateChanged,signInAnonymously
+} from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
-/* FIREBASE NOVO */
+/* FIREBASE */
 const firebaseConfig={
-apiKey:"AIzaSyDtmu5yKt5Kz8yxzTCCf5MfC2av1O5zL2Q",
-authDomain:"lojavendas-ae418.firebaseapp.com",
-databaseURL:"https://lojavendas-ae418-default-rtdb.firebaseio.com",
-projectId:"lojavendas-ae418",
-storageBucket:"lojavendas-ae418.firebasestorage.app",
-messagingSenderId:"241091939383",
-appId:"1:241091939383:web:b676e35c3c8c7c45c183b2",
-measurementId:"G-HQMNQFKDZP"
+ apiKey:"AIzaSyDtmu5yKt5Kz8yxzTCCf5MfC2av1O5zL2Q",
+ authDomain:"lojavendas-ae418.firebaseapp.com",
+ databaseURL:"https://lojavendas-ae418-default-rtdb.firebaseio.com",
+ projectId:"lojavendas-ae418",
+ storageBucket:"lojavendas-ae418.firebasestorage.app",
+ messagingSenderId:"241091939383",
+ appId:"1:241091939383:web:b676e35c3c8c7c45c183b2",
+ measurementId:"G-HQMNQFKDZP"
 };
 
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const auth=getAuth(app);
 
-const COLLECTION_NAME="acervo_fotos_pecas";
-const productsRef=collection(db,COLLECTION_NAME);
+const COLLECTION="acervo_fotos_pecas";
+const ref=collection(db,COLLECTION);
 
-/* CLOUDINARY EXISTENTE */
+/* CLOUDINARY */
 const CLOUDINARY_CLOUD="o1nv9kjt";
 const CLOUDINARY_PRESET="lothwar_store";
 
-let products=[];
-let currentUser=null;
-let editingId=null;
-let savedPhotos=[];
-let newPhotos=[];
-let galleryPhotos=[];
-let galleryIndex=0;
-let busy=false;
-let unsubscribe=null;
-let toastTimer;
+/* CATEGORIAS DO LOTHWAR */
+const CATEGORIES=[
+ "Adaptadores",
+ "Armazenamento",
+ "Cadeiras",
+ "Celular",
+ "Controladora",
+ "Controle",
+ "Fonte",
+ "Gabinete",
+ "Headset",
+ "Kit",
+ "Memória RAM",
+ "Monitor",
+ "Mouse",
+ "PC",
+ "Placa de Vídeo",
+ "Placa-mãe",
+ "Processador",
+ "Resfriadores",
+ "Teclado",
+ "Cooler / Fan",
+ "Periféricos",
+ "Outros"
+];
 
 const $=id=>document.getElementById(id);
+const packs=["Antonio","Joab"];
 
-function notify(message){
-const el=$("message");
-el.textContent=message;
-el.classList.remove("hidden");
-clearTimeout(toastTimer);
-toastTimer=setTimeout(()=>{
-el.classList.add("hidden");
-},4500);
+let products=[];
+let currentUser=null;
+let unsubscribe=null;
+let editingId=null;
+let busy=false;
+let toastTimer;
+let activePreviewPack="Antonio";
+let previewIndex=0;
+let previewURLs=[];
+let previewObjectURLs=[];
+let galleryURLs=[];
+let galleryIndex=0;
+
+const images={
+ Antonio:{saved:[],files:[]},
+ Joab:{saved:[],files:[]}
+};
+
+/* INICIALIZAR CATEGORIAS */
+function setupCategories(){
+ const filter=$("categoryFilter");
+ const editor=$("productCategory");
+
+ CATEGORIES.forEach(category=>{
+  const optionFilter=document.createElement("option");
+  optionFilter.value=category;
+  optionFilter.textContent=category;
+  filter.append(optionFilter);
+
+  const optionEditor=document.createElement("option");
+  optionEditor.value=category;
+  optionEditor.textContent=category;
+  editor.append(optionEditor);
+ });
 }
 
-function money(value){
-return Number(value||0).toLocaleString("pt-BR",{
-style:"currency",currency:"BRL"
-});
+setupCategories();
+
+function notify(text){
+ const el=$("message");
+ el.textContent=text;
+ el.classList.remove("hidden");
+ clearTimeout(toastTimer);
+ toastTimer=setTimeout(()=>{
+  el.classList.add("hidden");
+ },4500);
+}
+
+function money(number){
+ return Number(number||0).toLocaleString("pt-BR",{
+  style:"currency",currency:"BRL"
+ });
 }
 
 function escapeHTML(value){
-return String(value??"")
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#39;");
+ return String(value??"")
+ .replaceAll("&","&amp;")
+ .replaceAll("<","&lt;")
+ .replaceAll(">","&gt;")
+ .replaceAll('"',"&quot;")
+ .replaceAll("'","&#39;");
 }
 
 function optimizedURL(url){
-if(typeof url!=="string")return "";
-if(url.includes("res.cloudinary.com")
-&&url.includes("/upload/")
-&&!url.includes("/upload/f_auto,q_auto")){
-return url.replace("/upload/",
-"/upload/f_auto,q_auto,w_700/");
-}
-return url;
-}
-
-function setConnection(text,online=false){
-const el=$("connection");
-el.textContent=text;
-el.classList.toggle("online",online);
+ if(typeof url!=="string")return "";
+ if(url.includes("res.cloudinary.com") &&
+ url.includes("/upload/") &&
+ !url.includes("/upload/f_auto,q_auto")){
+  return url.replace(
+   "/upload/","/upload/f_auto,q_auto,w_700/"
+  );
+ }
+ return url;
 }
 
-/* ENTRADA AUTOMÁTICA */
+function fileSlug(value){
+ return String(value||"Produto").normalize("NFD")
+ .replace(/[\u0300-\u036f]/g,"")
+ .replace(/[^a-zA-Z0-9_-]+/g,"_")
+ .replace(/^_+|_+$/g,"")
+ .slice(0,65)||"Produto";
+}
+
+function getPack(product,owner){
+ if(owner==="Joab"){
+  return Array.isArray(product.photosJoab)
+   ?product.photosJoab:[];
+ }
+
+ return Array.isArray(product.photosAntonio)
+  ?product.photosAntonio:
+  Array.isArray(product.photos)?product.photos:[];
+}
+
+function connection(message,online=false){
+ $("connection").textContent=message;
+ $("connection").classList.toggle("online",online);
+}
+
+async function copyText(value,label){
+ const text=String(value??"");
+ if(!text.trim())return notify("Nada para copiar.");
+
+ try{
+  if(navigator.clipboard && window.isSecureContext){
+   await navigator.clipboard.writeText(text);
+  }else{
+   const field=document.createElement("textarea");
+   field.value=text;
+   field.style.position="fixed";
+   field.style.opacity="0";
+   document.body.append(field);
+   field.select();
+   const success=document.execCommand("copy");
+   field.remove();
+   if(!success)throw new Error("Cópia bloqueada");
+  }
+  notify(label+" copiado!");
+ }catch(error){
+  notify("Não foi possível copiar.");
+ }
+}
+
+/* FIREBASE */
 onAuthStateChanged(auth,async user=>{
-if(unsubscribe){
-unsubscribe();
-unsubscribe=null;
-}
+ if(unsubscribe){
+  unsubscribe();
+  unsubscribe=null;
+ }
 
-if(user){
-currentUser=user;
-setConnection("● Conectado",true);
-listenProducts();
-return;
-}
+ if(user){
+  currentUser=user;
+  listenProducts();
+  return;
+ }
 
-currentUser=null;
-products=[];
-renderProducts();
-setConnection("● Conectando...");
+ currentUser=null;
+ products=[];
+ renderProducts();
+ connection("● Conectando...");
 
-try{
-await signInAnonymously(auth);
-}catch(error){
-console.error(error);
-setConnection("● Erro de conexão");
-notify("Ative a autenticação anônima no Firebase.");
-}
+ try{
+  await signInAnonymously(auth);
+ }catch(error){
+  console.error(error);
+  connection("● Erro de conexão");
+  notify("Confira a autenticação anônima do Firebase.");
+ }
 });
 
-/* FIRESTORE EM TEMPO REAL */
 function listenProducts(){
-unsubscribe=onSnapshot(productsRef,snapshot=>{
-products=snapshot.docs.map(item=>({
-id:item.id,...item.data()
-}));
-products.sort((a,b)=>
-(b.createdAt||0)-(a.createdAt||0));
-renderProducts();
-},error=>{
-console.error(error);
-setConnection("● Sem acesso ao banco");
-notify("Confira as regras do Firestore.");
-});
+ unsubscribe=onSnapshot(ref,snapshot=>{
+  products=snapshot.docs.map(item=>({
+   id:item.id,...item.data()
+  }));
+
+  products.sort((a,b)=>
+   (b.createdAt||0)-(a.createdAt||0)
+  );
+
+  connection("● Conectado",true);
+  renderProducts();
+
+ },error=>{
+  console.error(error);
+  connection("● Sem acesso ao banco");
+  notify("Confira as regras do Firestore.");
+ });
 }
 
+/* FILTROS */
 $("search").addEventListener("input",renderProducts);
+$("categoryFilter").addEventListener("change",renderProducts);
 $("statusFilter").addEventListener("change",renderProducts);
 
+function normalizeCategory(value){
+ return String(value||"")
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g,"")
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g,"");
+}
+
 function renderProducts(){
-const search=$("search").value.trim().toLowerCase();
-const filter=$("statusFilter").value;
+ const search=$("search").value.trim().toLowerCase();
+ const status=$("statusFilter").value;
+ const category=$("categoryFilter").value;
 
-$("totalProducts").textContent=products.length;
-$("totalAntonio").textContent=
-products.filter(p=>p.owner==="Antonio").length;
-$("totalJoab").textContent=
-products.filter(p=>p.owner==="Joab").length;
+ $("totalProducts").textContent=products.length;
 
-const filtered=products.filter(p=>{
-const text=[
-p.name||"",p.category||"",p.description||""
-].join(" ").toLowerCase();
+ $("totalAntonio").textContent=products.filter(
+  p=>getPack(p,"Antonio").length>0
+ ).length;
 
-return text.includes(search)&&
-(!filter||(p.status||"Disponível")===filter);
-});
+ $("totalJoab").textContent=products.filter(
+  p=>getPack(p,"Joab").length>0
+ ).length;
 
-const antonio=filtered.filter(p=>p.owner==="Antonio");
-const joab=filtered.filter(p=>p.owner==="Joab");
+ const filtered=products.filter(product=>{
+  const text=[
+   product.name||"",
+   product.category||"",
+   product.description||""
+  ].join(" ").toLowerCase();
 
-$("countAntonio").textContent=antonio.length+" peças";
-$("countJoab").textContent=joab.length+" peças";
+  const matchesSearch=text.includes(search);
 
-renderGroup("productsAntonio",antonio);
-renderGroup("productsJoab",joab);
+  const matchesStatus=
+   !status||(product.status||"Disponível")===status;
+
+  const matchesCategory=
+   !category||
+   normalizeCategory(product.category)===
+   normalizeCategory(category);
+
+  return matchesSearch&&matchesStatus&&matchesCategory;
+ });
+
+ $("countProducts").textContent=
+  filtered.length+" anúncios";
+
+ const container=$("productsContainer");
+ container.replaceChildren();
+
+ if(!filtered.length){
+  const empty=document.createElement("div");
+  empty.className="empty";
+  empty.textContent=category
+   ?"Nenhum anúncio encontrado na categoria "+category+"."
+   :"Nenhum anúncio encontrado.";
+  container.append(empty);
+  return;
+ }
+
+ filtered.forEach(product=>{
+  container.append(createCard(product));
+ });
 }
 
-function renderGroup(containerId,list){
-const container=$(containerId);
-container.replaceChildren();
+/* CARDS */
+function createCard(product){
+ const card=document.createElement("article");
+ card.className="card";
 
-if(!list.length){
-const empty=document.createElement("div");
-empty.className="empty";
-empty.textContent="Nenhuma peça encontrada nesta seção.";
-container.append(empty);
-return;
+ if(product.promocao)card.classList.add("promo");
+ if(product.status==="Vendido")card.classList.add("sold");
+
+ const tabs=document.createElement("div");
+ tabs.className="pack-tabs";
+
+ const photoArea=document.createElement("div");
+ photoArea.className="photos";
+
+ function showPack(owner){
+  photoArea.replaceChildren();
+
+  tabs.querySelectorAll("button").forEach(button=>{
+   button.classList.toggle(
+    "active",
+    button.dataset.owner===owner
+   );
+  });
+
+  const photos=getPack(product,owner);
+
+  if(!photos.length){
+   const empty=document.createElement("div");
+   empty.className="no-photo";
+   empty.textContent="Sem fotos deste pacote";
+   photoArea.append(empty);
+   return;
+  }
+
+  for(let start=0;start<photos.length;start+=4){
+   const chunk=photos.slice(start,start+4);
+   const page=document.createElement("div");
+
+   page.className="photo-page";
+   page.dataset.count=chunk.length;
+
+   chunk.forEach((url,index)=>{
+    const img=document.createElement("img");
+    img.src=optimizedURL(url);
+    img.loading="lazy";
+    img.alt="Foto "+(start+index+1);
+
+    img.onclick=()=>{
+     openGallery(product,owner,start+index);
+    };
+
+    page.append(img);
+   });
+
+   photoArea.append(page);
+  }
+ }
+
+ packs.forEach(owner=>{
+  const button=document.createElement("button");
+  button.className="pack-tab";
+  button.dataset.owner=owner;
+  button.textContent=owner==="Antonio"
+   ?"Fotos Antônio":"Fotos Joab";
+
+  button.onclick=()=>showPack(owner);
+  tabs.append(button);
+ });
+
+ showPack("Antonio");
+
+ const body=document.createElement("div");
+ body.className="card-body";
+
+ body.innerHTML=`
+  <h3>${escapeHTML(product.name||"Sem título")}</h3>
+
+  <div class="category">
+   Categoria: ${escapeHTML(product.category||"Outros")}
+  </div>
+
+  <div class="description">${
+   escapeHTML(product.description||"Sem descrição.")
+  }</div>
+
+  <div class="price">${money(product.price)}</div>
+
+  ${product.promocao
+   ?'<span class="promo-label">★ EM PROMOÇÃO</span>'
+   :""}
+
+  ${product.status&&product.status!=="Disponível"
+   ?`<span class="status">${escapeHTML(product.status)}</span>`
+   :""}
+
+  <div class="card-actions">
+   <button class="btn action-edit" data-action="edit">
+    Editar
+   </button>
+
+   <button class="btn action-promo" data-action="promo">
+    ${product.promocao?"Remover Promo":"Promoção"}
+   </button>
+
+   <button class="btn action-sold" data-action="sold">
+    ${product.status==="Vendido"?"Reativar":"Vendido"}
+   </button>
+
+   <button class="btn action-delete" data-action="delete">
+    Excluir
+   </button>
+
+   <button class="btn action-copy" data-action="title">
+    Título
+   </button>
+
+   <button class="btn action-copy" data-action="description">
+    Descrição
+   </button>
+
+   <button class="btn action-copy" data-action="price">
+    Preço
+   </button>
+
+   <button class="btn action-zip1" data-action="zipAntonio">
+    ZIP Antônio
+   </button>
+
+   <button class="btn action-zip2" data-action="zipJoab">
+    ZIP Joab
+   </button>
+  </div>
+ `;
+
+ body.querySelectorAll("[data-action]").forEach(button=>{
+  button.onclick=()=>{
+   cardAction(button.dataset.action,product,button);
+  };
+ });
+
+ card.append(tabs,photoArea,body);
+ return card;
 }
 
-for(const product of list){
-const photos=Array.isArray(product.photos)?
-product.photos:[];
-const status=["Disponível","Reservado","Vendido"]
-.includes(product.status)?
-product.status:"Disponível";
+/* AÇÕES */
+async function cardAction(action,product,button){
+ if(action==="title"){
+  return copyText(product.name,"Título");
+ }
 
-const statusClass=status==="Vendido"?"vendido":
-status==="Reservado"?"reservado":"";
+ if(action==="description"){
+  return copyText(product.description,"Descrição");
+ }
 
-const card=document.createElement("article");
-card.className="card";
+ if(action==="price"){
+  return copyText(
+   Number(product.price||0).toFixed(2).replace(".",","),
+   "Preço"
+  );
+ }
 
-const photoArea=document.createElement("div");
-photoArea.className="photos";
+ if(action==="zipAntonio"){
+  return downloadZIP(product,"Antonio",button);
+ }
 
-if(photos.length){
-photos.forEach((url,index)=>{
-const img=document.createElement("img");
-img.src=optimizedURL(url);
-img.loading="lazy";
-img.alt="Foto "+(index+1);
-img.addEventListener("click",()=>{
-openGallery(product.id,index);
-});
-photoArea.append(img);
-});
-}else{
-photoArea.innerHTML=
-'<div class="no-photo"><i class="fa-solid fa-image"></i></div>';
+ if(action==="zipJoab"){
+  return downloadZIP(product,"Joab",button);
+ }
+
+ if(action==="edit"){
+  return openForm(product.id);
+ }
+
+ if(action==="delete"){
+  return removeProduct(product.id);
+ }
+
+ if(action==="promo"){
+  return quickUpdate(product.id,{
+   promocao:!Boolean(product.promocao)
+  });
+ }
+
+ if(action==="sold"){
+  return quickUpdate(product.id,{
+   status:product.status==="Vendido"
+    ?"Disponível":"Vendido"
+  });
+ }
 }
 
-const body=document.createElement("div");
-body.className="card-body";
-body.innerHTML=`
-<div class="category">
-${escapeHTML(product.category||"Outros")}
-• ${escapeHTML(product.condition||"")}
-</div>
-<h3>${escapeHTML(product.name||"Sem título")}</h3>
-<div class="price">${money(product.price)}</div>
-<span class="status ${statusClass}">
-${escapeHTML(status)}
-</span>
-<div class="description">${
-escapeHTML(product.description||"Sem descrição.")
-}</div>
-<div class="card-actions">
-<button class="btn gray edit-btn">
-<i class="fa-solid fa-pen"></i> Editar
-</button>
-<button class="btn red delete-btn">
-<i class="fa-solid fa-trash"></i> Excluir
-</button>
-</div>`;
+async function quickUpdate(id,changes){
+ if(busy||!currentUser){
+  return notify("Aguarde a conexão.");
+ }
 
-body.querySelector(".edit-btn").addEventListener(
-"click",()=>openForm(product.id));
-body.querySelector(".delete-btn").addEventListener(
-"click",()=>removeProduct(product.id));
+ busy=true;
 
-card.append(photoArea,body);
-container.append(card);
-}
+ try{
+  await updateDoc(doc(db,COLLECTION,id),{
+   ...changes,
+   updatedAt:Date.now()
+  });
+  notify("Alteração salva!");
+ }catch(error){
+  console.error(error);
+  notify("Não foi possível salvar.");
+ }finally{
+  busy=false;
+ }
 }
 
-/* CADASTRAR E EDITAR */
-$("addButton").addEventListener("click",()=>openForm());
-$("cancelButton").addEventListener("click",()=>closeForm());
+async function removeProduct(id){
+ if(busy||!currentUser)return;
+
+ const product=products.find(p=>p.id===id);
+ if(!product)return;
+
+ if(!confirm(`Excluir "${product.name}"?`))return;
+
+ busy=true;
+
+ try{
+  await deleteDoc(doc(db,COLLECTION,id));
+  notify("Anúncio excluído.");
+ }catch(error){
+  console.error(error);
+  notify("Erro ao excluir.");
+ }finally{
+  busy=false;
+ }
+}
+
+/* ZIP */
+async function downloadZIP(product,owner,button){
+ const urls=getPack(product,owner);
+
+ if(!urls.length){
+  return notify("Este pacote não possui fotografias.");
+ }
+
+ if(typeof JSZip==="undefined"){
+  return notify("Biblioteca ZIP indisponível.");
+ }
+
+ if(button.disabled)return;
+
+ const original=button.innerHTML;
+ button.disabled=true;
+
+ try{
+  const zip=new JSZip();
+  const folder=zip.folder("Fotos_"+owner);
+
+  for(let i=0;i<urls.length;i++){
+   button.textContent=`${i+1}/${urls.length}`;
+
+   const response=await fetch(urls[i],{
+    mode:"cors"
+   });
+
+   if(!response.ok){
+    throw new Error("Falha na foto "+(i+1));
+   }
+
+   const blob=await response.blob();
+
+   const extensions={
+    "image/jpeg":"jpg",
+    "image/png":"png",
+    "image/webp":"webp",
+    "image/gif":"gif",
+    "image/avif":"avif"
+   };
+
+   const ext=extensions[blob.type]||"jpg";
+
+   folder.file(
+    "Foto_"+String(i+1).padStart(2,"0")+"."+ext,
+    blob
+   );
+  }
+
+  button.textContent="Gerando ZIP...";
+
+  const archive=await zip.generateAsync({
+   type:"blob"
+  });
+
+  const url=URL.createObjectURL(archive);
+  const link=document.createElement("a");
+
+  link.href=url;
+  link.download=fileSlug(product.name)+"_"+owner+".zip";
+
+  document.body.append(link);
+  link.click();
+  link.remove();
+
+  setTimeout(()=>{
+   URL.revokeObjectURL(url);
+  },30000);
+
+  notify("Fotos do "+owner+" baixadas em ZIP.");
+
+ }catch(error){
+  console.error(error);
+  notify("Erro no ZIP. Confira o acesso às imagens (CORS).");
+ }finally{
+  button.innerHTML=original;
+  button.disabled=false;
+ }
+}
+
+/* EDITOR */
+function clearEditor(){
+ packs.forEach(owner=>{
+  images[owner].saved=[];
+  images[owner].files=[];
+ });
+}
+
+function ensureCategoryOption(category){
+ const select=$("productCategory");
+ if(!category)return;
+
+ const exists=[...select.options].some(option=>
+  option.value===category
+ );
+
+ if(!exists){
+  const option=document.createElement("option");
+  option.value=category;
+  option.textContent=category;
+  select.append(option);
+ }
+}
 
 function openForm(id=null){
-if(!currentUser){
-notify("Aguarde a conexão com o Firebase.");
-return;
-}
-if(busy)return;
+ if(busy||!currentUser){
+  return notify("Aguarde a conexão com Firebase.");
+ }
 
-editingId=id;
-savedPhotos=[];
-newPhotos=[];
-$("productForm").reset();
-$("productPhotos").value="";
+ editingId=id;
+ clearEditor();
+ $("productForm").reset();
 
-if(id){
-const item=products.find(p=>p.id===id);
-if(!item)return;
+ $("filesAntonio").value="";
+ $("filesJoab").value="";
 
-$("formTitle").textContent="Editar Peça";
-$("productOwner").value=item.owner||"Antonio";
-$("productName").value=item.name||"";
-$("productCategory").value=item.category||"Outros";
-$("productPrice").value=item.price??0;
-$("productCondition").value=item.condition||"Nova";
-$("productStatus").value=item.status||"Disponível";
-$("productDescription").value=item.description||"";
-savedPhotos=Array.isArray(item.photos)?[...item.photos]:[];
-}else{
-$("formTitle").textContent="Adicionar Peça";
-}
+ if(id){
+  const product=products.find(p=>p.id===id);
+  if(!product)return;
 
-renderPhotoPreview();
-$("formOverlay").classList.remove("hidden");
+  $("formTitle").textContent="Editar anúncio";
+  $("productName").value=product.name||"";
+  $("productPrice").value=product.price??0;
+
+  ensureCategoryOption(product.category);
+  $("productCategory").value=product.category||"Outros";
+
+  $("productCondition").value=
+   product.condition||"Nova";
+
+  $("productStatus").value=
+   product.status||"Disponível";
+
+  $("productDescription").value=
+   product.description||"";
+
+  packs.forEach(owner=>{
+   images[owner].saved=[...getPack(product,owner)];
+  });
+
+ }else{
+  $("formTitle").textContent="Item para venda";
+ }
+
+ activePreviewPack="Antonio";
+ previewIndex=0;
+
+ renderAllEditor();
+
+ $("formOverlay").classList.remove("hidden");
+ document.body.style.overflow="hidden";
 }
 
 function closeForm(){
-if(busy)return;
-$("formOverlay").classList.add("hidden");
-editingId=null;
-savedPhotos=[];
-newPhotos=[];
-$("productPhotos").value="";
+ if(busy)return;
+
+ $("formOverlay").classList.add("hidden");
+ document.body.style.overflow="";
+
+ releasePreviewURLs();
+ editingId=null;
+ clearEditor();
 }
 
-/* FOTOGRAFIAS */
-$("productPhotos").addEventListener("change",e=>{
-const files=[...e.target.files];
+$("addButton").onclick=()=>openForm();
+$("cancelButton").onclick=closeForm;
+$("editorClose").onclick=closeForm;
 
-for(const file of files){
-if(!file.type.startsWith("image/")){
-notify("Selecione somente imagens.");
-continue;
-}
-if(file.size>10*1024*1024){
-notify("Imagem acima de 10 MB.");
-continue;
-}
-if(savedPhotos.length+newPhotos.length>=15){
-notify("Limite de 15 fotografias.");
-break;
-}
-newPhotos.push(file);
+function addFiles(owner,files){
+ const pack=images[owner];
+
+ for(const file of files){
+  if(!file.type.startsWith("image/")){
+   notify("Selecione somente imagens.");
+   continue;
+  }
+
+  if(file.size>10*1024*1024){
+   notify("Cada imagem pode ter até 10 MB.");
+   continue;
+  }
+
+  if(pack.saved.length+pack.files.length>=15){
+   notify("Limite de 15 fotos por pacote.");
+   break;
+  }
+
+  pack.files.push(file);
+ }
+
+ renderAllEditor();
 }
 
-e.target.value="";
-renderPhotoPreview();
+packs.forEach(owner=>{
+ const input=$("files"+owner);
+ const zone=$("drop"+owner);
+
+ input.onchange=event=>{
+  addFiles(owner,[...event.target.files]);
+  input.value="";
+ };
+
+ zone.addEventListener("dragover",event=>{
+  event.preventDefault();
+  zone.classList.add("dragging");
+ });
+
+ zone.addEventListener("dragleave",()=>{
+  zone.classList.remove("dragging");
+ });
+
+ zone.addEventListener("drop",event=>{
+  event.preventDefault();
+  zone.classList.remove("dragging");
+  addFiles(owner,[...event.dataTransfer.files]);
+ });
 });
 
-function renderPhotoPreview(){
-const preview=$("photoPreview");
-preview.replaceChildren();
-
-savedPhotos.forEach((url,index)=>{
-preview.append(createPhotoBox(optimizedURL(url),()=>{
-savedPhotos.splice(index,1);
-renderPhotoPreview();
-}));
-});
-
-newPhotos.forEach((file,index)=>{
-const url=URL.createObjectURL(file);
-const box=createPhotoBox(url,()=>{
-newPhotos.splice(index,1);
-renderPhotoPreview();
-});
-const img=box.querySelector("img");
-img.onload=()=>URL.revokeObjectURL(url);
-preview.append(box);
-});
+function releasePreviewURLs(){
+ previewObjectURLs.forEach(url=>{
+  URL.revokeObjectURL(url);
+ });
+ previewObjectURLs=[];
 }
 
-function createPhotoBox(url,onRemove){
-const box=document.createElement("div");
-box.className="photo-item";
-const image=document.createElement("img");
-image.src=url;
-const button=document.createElement("button");
-button.type="button";
-button.textContent="×";
-button.addEventListener("click",onRemove);
-box.append(image,button);
-return box;
+function renderAllEditor(){
+ packs.forEach(owner=>{
+  const box=$("preview"+owner);
+  box.replaceChildren();
+
+  const pack=images[owner];
+
+  pack.saved.forEach((url,index)=>{
+   box.append(makeThumb(
+    optimizedURL(url),
+    ()=>{
+     pack.saved.splice(index,1);
+     renderAllEditor();
+    }
+   ));
+  });
+
+  pack.files.forEach((file,index)=>{
+   const temp=URL.createObjectURL(file);
+
+   const thumb=makeThumb(temp,()=>{
+    pack.files.splice(index,1);
+    renderAllEditor();
+   });
+
+   thumb.querySelector("img").onload=()=>{
+    URL.revokeObjectURL(temp);
+   };
+
+   box.append(thumb);
+  });
+ });
+
+ updateEditorTexts();
+ renderEditorImage();
 }
 
-/* CLOUDINARY */
+function makeThumb(url,remove){
+ const div=document.createElement("div");
+ div.className="photo-item";
+
+ const img=document.createElement("img");
+ img.src=url;
+
+ const btn=document.createElement("button");
+ btn.type="button";
+ btn.textContent="×";
+ btn.onclick=remove;
+
+ div.append(img,btn);
+ return div;
+}
+
+function updateEditorTexts(){
+ $("previewTitle").textContent=
+  $("productName").value.trim()||"Título";
+
+ $("previewPrice").textContent=
+  money($("productPrice").value);
+
+ $("previewDescription").textContent=
+  $("productDescription").value.trim()||
+  "A descrição aparecerá aqui.";
+}
+
+["productName","productPrice","productDescription"].forEach(id=>{
+ $(id).addEventListener("input",updateEditorTexts);
+});
+
+function renderEditorImage(){
+ releasePreviewURLs();
+
+ const pack=images[activePreviewPack];
+
+ previewURLs=[
+  ...pack.saved.map(optimizedURL),
+  ...pack.files.map(file=>{
+   const url=URL.createObjectURL(file);
+   previewObjectURLs.push(url);
+   return url;
+  })
+ ];
+
+ if(previewIndex>=previewURLs.length){
+  previewIndex=0;
+ }
+
+ const img=$("previewMainImage");
+ const has=previewURLs.length>0;
+
+ img.classList.toggle("hidden",!has);
+ $("previewPlaceholder").classList.toggle("hidden",has);
+
+ if(has){
+  img.src=previewURLs[previewIndex];
+ }else{
+  img.removeAttribute("src");
+ }
+
+ $("previewPrev").classList.toggle(
+  "hidden",previewURLs.length<2
+ );
+
+ $("previewNext").classList.toggle(
+  "hidden",previewURLs.length<2
+ );
+
+ $("previewSeller").textContent=
+  activePreviewPack==="Antonio"?"Antônio":"Joab";
+
+ $("previewAntonioBtn").classList.toggle(
+  "active",activePreviewPack==="Antonio"
+ );
+
+ $("previewJoabBtn").classList.toggle(
+  "active",activePreviewPack==="Joab"
+ );
+}
+
+function switchEditorPack(owner){
+ activePreviewPack=owner;
+ previewIndex=0;
+ renderEditorImage();
+}
+
+$("previewAntonioBtn").onclick=()=>{
+ switchEditorPack("Antonio");
+};
+
+$("previewJoabBtn").onclick=()=>{
+ switchEditorPack("Joab");
+};
+
+$("previewPrev").onclick=()=>{
+ if(!previewURLs.length)return;
+
+ previewIndex=(
+  previewIndex-1+previewURLs.length
+ )%previewURLs.length;
+
+ renderEditorImage();
+};
+
+$("previewNext").onclick=()=>{
+ if(!previewURLs.length)return;
+
+ previewIndex=(
+  previewIndex+1
+ )%previewURLs.length;
+
+ renderEditorImage();
+};
+
+/* UPLOAD CLOUDINARY */
 async function uploadPhoto(file){
-const form=new FormData();
-form.append("file",file);
-form.append("upload_preset",CLOUDINARY_PRESET);
+ const form=new FormData();
 
-const response=await fetch(
-`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`,
-{method:"POST",body:form}
-);
+ form.append("file",file);
+ form.append("upload_preset",CLOUDINARY_PRESET);
 
-const result=await response.json();
+ const response=await fetch(
+  `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`,
+  {
+   method:"POST",
+   body:form
+  }
+ );
 
-if(!response.ok||result.error||!result.secure_url){
-throw new Error(result.error?.message||
-"Erro no upload da fotografia.");
-}
-return result.secure_url;
+ const data=await response.json();
+
+ if(!response.ok||data.error||!data.secure_url){
+  throw new Error(
+   data.error?.message||"Falha no upload."
+  );
+ }
+
+ return data.secure_url;
 }
 
 /* SALVAR */
-$("productForm").addEventListener("submit",async e=>{
-e.preventDefault();
-if(!currentUser||busy)return;
+$("productForm").onsubmit=async event=>{
+ event.preventDefault();
 
-const name=$("productName").value.trim();
-const price=Number($("productPrice").value);
+ if(!currentUser||busy)return;
 
-if(!name||!Number.isFinite(price)||price<0){
-notify("Preencha nome e preço válidos.");
-return;
-}
+ const title=$("productName").value.trim();
+ const price=Number($("productPrice").value);
 
-busy=true;
-const button=$("saveButton");
-button.disabled=true;
-button.textContent="Salvando...";
+ if(!title||!Number.isFinite(price)||price<0){
+  return notify("Preencha título e preço válidos.");
+ }
 
-try{
-const photos=[...savedPhotos];
+ busy=true;
 
-for(let i=0;i<newPhotos.length;i++){
-button.textContent=
-`Enviando foto ${i+1} de ${newPhotos.length}...`;
-const url=await uploadPhoto(newPhotos[i]);
-photos.push(url);
-}
+ const button=$("saveButton");
+ button.disabled=true;
 
-const data={
-owner:$("productOwner").value,
-name,
-category:$("productCategory").value,
-price,
-condition:$("productCondition").value,
-status:$("productStatus").value,
-description:$("productDescription").value.trim(),
-photos,
-updatedAt:Date.now()
+ try{
+  const photoData={};
+
+  for(const owner of packs){
+   const pack=images[owner];
+   const urls=[...pack.saved];
+
+   for(let i=0;i<pack.files.length;i++){
+    button.textContent=
+     `Enviando ${owner}: ${i+1}/${pack.files.length}`;
+
+    urls.push(
+     await uploadPhoto(pack.files[i])
+    );
+   }
+
+   photoData[owner]=urls;
+  }
+
+  const data={
+   name:title,
+   price,
+   category:$("productCategory").value,
+   condition:$("productCondition").value,
+   status:$("productStatus").value,
+   description:$("productDescription").value.trim(),
+   photosAntonio:photoData.Antonio,
+   photosJoab:photoData.Joab,
+   updatedAt:Date.now()
+  };
+
+  button.textContent="Salvando...";
+
+  if(editingId){
+   await updateDoc(
+    doc(db,COLLECTION,editingId),
+    data
+   );
+   notify("Anúncio atualizado!");
+
+  }else{
+   data.createdAt=Date.now();
+   data.createdBy=currentUser.uid;
+   data.promocao=false;
+
+   await addDoc(ref,data);
+   notify("Anúncio cadastrado!");
+  }
+
+  busy=false;
+  closeForm();
+
+ }catch(error){
+  console.error(error);
+  notify("Erro ao salvar: "+error.message);
+ }finally{
+  busy=false;
+  button.disabled=false;
+  button.textContent="Salvar anúncio";
+ }
 };
 
-button.textContent="Salvando peça...";
-
-if(editingId){
-await updateDoc(doc(db,COLLECTION_NAME,editingId),data);
-notify("Peça atualizada com sucesso!");
-}else{
-data.createdAt=Date.now();
-data.createdBy=currentUser.uid;
-await addDoc(productsRef,data);
-notify("Peça cadastrada com sucesso!");
-}
-
-busy=false;
-closeForm();
-}catch(error){
-console.error(error);
-notify("Erro ao salvar: "+error.message);
-}finally{
-busy=false;
-button.disabled=false;
-button.textContent="Salvar Peça";
-}
-});
-
-/* EXCLUSÃO */
-async function removeProduct(id){
-if(!currentUser||busy)return;
-const item=products.find(p=>p.id===id);
-if(!item)return;
-
-if(!confirm(`Excluir a peça "${item.name}"?`))return;
-
-busy=true;
-try{
-await deleteDoc(doc(db,COLLECTION_NAME,id));
-notify("Peça excluída com sucesso!");
-}catch(error){
-console.error(error);
-notify("Erro ao excluir. Confira as permissões.");
-}finally{
-busy=false;
-}
-}
-
 /* GALERIA */
-function openGallery(id,index){
-const item=products.find(p=>p.id===id);
-if(!item)return;
-galleryPhotos=Array.isArray(item.photos)?item.photos:[];
-if(!galleryPhotos.length)return;
+function openGallery(product,owner,index){
+ galleryURLs=getPack(product,owner);
+ if(!galleryURLs.length)return;
 
-galleryIndex=index;
-$("galleryTitle").textContent=item.name;
-$("galleryOverlay").classList.remove("hidden");
-updateGallery();
+ galleryIndex=index;
+
+ $("galleryTitle").textContent=
+  product.name+" — "+owner;
+
+ $("galleryOverlay").classList.remove("hidden");
+ updateGallery();
 }
 
 function updateGallery(){
-$("galleryImage").src=galleryPhotos[galleryIndex];
-$("galleryCounter").textContent=
-`${galleryIndex+1} de ${galleryPhotos.length}`;
+ $("galleryImage").src=galleryURLs[galleryIndex];
+
+ $("galleryCounter").textContent=
+  (galleryIndex+1)+" de "+galleryURLs.length;
 }
 
 function changeGallery(direction){
-if(!galleryPhotos.length)return;
-galleryIndex=(
-galleryIndex+direction+galleryPhotos.length
-)%galleryPhotos.length;
-updateGallery();
+ if(!galleryURLs.length)return;
+
+ galleryIndex=(
+  galleryIndex+direction+galleryURLs.length
+ )%galleryURLs.length;
+
+ updateGallery();
 }
 
-$("prevPhoto").addEventListener("click",()=>{
-changeGallery(-1);
-});
-$("nextPhoto").addEventListener("click",()=>{
-changeGallery(1);
-});
-$("closeGallery").addEventListener("click",()=>{
-$("galleryOverlay").classList.add("hidden");
-$("galleryImage").removeAttribute("src");
-});
-
-document.addEventListener("keydown",e=>{
-if($("galleryOverlay").classList.contains("hidden"))return;
-if(e.key==="ArrowLeft")changeGallery(-1);
-if(e.key==="ArrowRight")changeGallery(1);
-if(e.key==="Escape"){
-$("galleryOverlay").classList.add("hidden");
-$("galleryImage").removeAttribute("src");
+function closeGallery(){
+ $("galleryOverlay").classList.add("hidden");
+ $("galleryImage").removeAttribute("src");
 }
+
+$("galleryPrev").onclick=()=>{
+ changeGallery(-1);
+};
+
+$("galleryNext").onclick=()=>{
+ changeGallery(1);
+};
+
+$("galleryClose").onclick=closeGallery;
+
+document.addEventListener("keydown",event=>{
+ if(!$("galleryOverlay").classList.contains("hidden")){
+  if(event.key==="ArrowLeft")changeGallery(-1);
+  if(event.key==="ArrowRight")changeGallery(1);
+  if(event.key==="Escape")closeGallery();
+ }
 });
 
 renderProducts();
+
 </script>
 </body>
 </html>
